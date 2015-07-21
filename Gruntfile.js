@@ -8,7 +8,7 @@ module.exports = function (grunt) {
           paths: ["public/styles"]
         },
         files: {
-          "public/styles/styles.css": "less/styles.less"
+          "public/styles/styles.css": "public/less/styles.less"
         }
       },
       production: {
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
           cleancss: true
         },
         files: {
-          "public/styles/styles.css": "less/styles.less"
+          "public/styles/styles.css": "public/less/styles.less"
         }
       }
     },
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
 
     watch: {
       styles: {
-        files: ['less/*.less'],
+        files: ['public/less/*.less'],
         tasks: ['less', 'cssmin']
       },
       scripts: {
