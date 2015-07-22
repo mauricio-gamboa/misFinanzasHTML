@@ -962,7 +962,7 @@ Budget Styles
 }
 @media (max-width: 767px) {
   .budget h5 {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 .budget h5 > span {
