@@ -616,6 +616,11 @@ Home Header Styles
     font-size: 61px;
     line-height: 63px;
     margin: 0;
+
+    @media @small {
+      font-size: 47px;
+      line-height: 59px;
+    }
   }
 
   p {
@@ -632,6 +637,10 @@ Home Header Styles
 
     @media @medium {
       right: -45px;
+    }
+
+    @media @small {
+      right: -150px;
     }
   }
 
@@ -667,27 +676,28 @@ Home Header Styles
         font-size: 18px;
       }
     }
+  }
+}
 
-    .link-1 {
-      z-index: 10;
-      position: absolute;
-      bottom: 23px;
-      right: 0;
+.home-header-bottom {
 
-      @media @medium {
-        font-size: 19px;
-      }
+  .store-links {
+    position: absolute;
+    bottom: 27px;
+    left: 0;
+
+    a {
+      margin-right: 13px;
     }
+  }
 
-    .store-links {
-      z-index: 10;
-      position: absolute;
-      bottom: 27px;
-      left: 0;
+  .link-1 {
+    position: absolute;
+    bottom: 23px;
+    right: 0;
 
-      a {
-        margin-right: 13px;
-      }
+    @media @small {
+      font-size: 21px;
     }
   }
 }
@@ -697,6 +707,20 @@ Home Header Styles
   overflow: hidden;
   transition: margin-top 0.5s ease;
   margin-top: 111px;
+
+  .home-header-bottom {
+    height: 130px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+    .home-header-bottom-wrapper {
+      height: 130px;
+      position: relative;
+    }
+  }
 }
 
 /***************************
@@ -735,6 +759,12 @@ Features Styles
     @media @medium {
       min-height: 90px;
       font-size: 15px;
+    }
+  }
+
+  &.margin-bottom {
+    @media @small {
+      margin-bottom: 40px;
     }
   }
 }
@@ -1069,6 +1099,10 @@ Platforms Styles
     margin: 35px 0 0 0;
     width: 195px;
 
+    @media @small {
+      width: 100%;
+    }
+
     li {
       font-family: 'open_sanssemibold';
       font-size: 14px;
@@ -1097,6 +1131,10 @@ Platforms Styles
       }
     }
   }
+
+  &.margin-bottom {
+    margin-bottom: 40px;
+  }
 }
 
 .platforms-image {
@@ -1118,6 +1156,10 @@ Options Styles
 
 #options {
   background: url("../images/bg-options.png") no-repeat 50% 0;
+
+  @media @small {
+    background-position: 51% 0;
+  }
 }
 
 .options-text {
@@ -1134,12 +1176,27 @@ Options Styles
     text-transform: uppercase;
     color: white;
     .font-settings-4;
+
+    @media @small {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    br {
+      @media @small {
+        display: none;
+      }
+    }
   }
 
   .links {
     position: absolute;
     bottom: 25px;
     left: 0;
+
+    @media @small {
+      bottom: 20px;
+    }
 
     .my-btn {
       height: 42px;
@@ -1151,6 +1208,10 @@ Options Styles
 
       @media @medium {
         width: 174px;
+      }
+
+      @media @small {
+        width: 160px;
       }
 
       &:last-child {

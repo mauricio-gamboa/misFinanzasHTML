@@ -438,6 +438,12 @@ Home Header Styles
   line-height: 63px;
   margin: 0;
 }
+@media (min-width: 768px) and (max-width: 992px) {
+  .header-wrapper h1 {
+    font-size: 47px;
+    line-height: 59px;
+  }
+}
 .header-wrapper p {
   color: white;
   margin: 0;
@@ -452,6 +458,11 @@ Home Header Styles
 @media (min-width: 993px) and (max-width: 1200px) {
   .header-wrapper .hand {
     right: -45px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .header-wrapper .hand {
+    right: -150px;
   }
 }
 .header-wrapper.home {
@@ -481,31 +492,41 @@ Home Header Styles
   line-height: 54px;
   font-size: 18px;
 }
-.header-wrapper.home .link-1 {
-  z-index: 10;
-  position: absolute;
-  bottom: 23px;
-  right: 0;
-}
-@media (min-width: 993px) and (max-width: 1200px) {
-  .header-wrapper.home .link-1 {
-    font-size: 19px;
-  }
-}
-.header-wrapper.home .store-links {
-  z-index: 10;
+.home-header-bottom .store-links {
   position: absolute;
   bottom: 27px;
   left: 0;
 }
-.header-wrapper.home .store-links a {
+.home-header-bottom .store-links a {
   margin-right: 13px;
+}
+.home-header-bottom .link-1 {
+  position: absolute;
+  bottom: 23px;
+  right: 0;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .home-header-bottom .link-1 {
+    font-size: 21px;
+  }
 }
 #home-header {
   background: url("../images/bg-header-home.jpg") no-repeat scroll 50% 0 / cover;
   overflow: hidden;
   transition: margin-top 0.5s ease;
   margin-top: 111px;
+}
+#home-header .home-header-bottom {
+  height: 130px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+#home-header .home-header-bottom .home-header-bottom-wrapper {
+  height: 130px;
+  position: relative;
 }
 /***************************
 ****************************
@@ -541,6 +562,11 @@ Features Styles
   .feature h4 {
     min-height: 90px;
     font-size: 15px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .feature.margin-bottom {
+    margin-bottom: 40px;
   }
 }
 /***************************
@@ -790,6 +816,11 @@ Platforms Styles
   margin: 35px 0 0 0;
   width: 195px;
 }
+@media (min-width: 768px) and (max-width: 992px) {
+  .platforms-text ul {
+    width: 100%;
+  }
+}
 .platforms-text ul li {
   font-family: 'open_sanssemibold';
   font-size: 14px;
@@ -814,6 +845,9 @@ Platforms Styles
 .platforms-text ul li > div img {
   vertical-align: middle;
 }
+.platforms-text.margin-bottom {
+  margin-bottom: 40px;
+}
 .platforms-image > img {
   max-width: 100%;
 }
@@ -828,6 +862,11 @@ Options Styles
 }
 #options {
   background: url("../images/bg-options.png") no-repeat 50% 0;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #options {
+    background-position: 51% 0;
+  }
 }
 .options-text {
   position: relative;
@@ -844,10 +883,26 @@ Options Styles
   font-size: 18px;
   line-height: 25px;
 }
+@media (min-width: 768px) and (max-width: 992px) {
+  .options-text h4 {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .options-text h4 br {
+    display: none;
+  }
+}
 .options-text .links {
   position: absolute;
   bottom: 25px;
   left: 0;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .options-text .links {
+    bottom: 20px;
+  }
 }
 .options-text .links .my-btn {
   height: 42px;
@@ -860,6 +915,11 @@ Options Styles
 @media (min-width: 993px) and (max-width: 1200px) {
   .options-text .links .my-btn {
     width: 174px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .options-text .links .my-btn {
+    width: 160px;
   }
 }
 .options-text .links .my-btn:last-child {
