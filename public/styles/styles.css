@@ -758,6 +758,14 @@ Small Features Styles
 .small-feature {
   text-align: center;
 }
+@media (max-width: 767px) {
+  .small-feature {
+    margin-bottom: 40px;
+  }
+}
+.small-feature.no-margin {
+  margin-bottom: 0;
+}
 .small-feature > div {
   height: 63px;
   line-height: 63px;
@@ -1226,15 +1234,28 @@ Start Styles
 ****************************
 ***************************/
 #start {
-  background: url("../images/lines-start-top.png") no-repeat 50% 0, url("../images/lines-start-bottom.png") no-repeat 50% 100%, url("../images/bg-start.jpg") no-repeat 50% 0 / cover;
+  background: url("../images/bg-start.jpg") no-repeat 50% 0 / cover;
   height: 618px;
   text-align: center;
   padding-top: 125px;
+  position: relative;
+  overflow: hidden;
 }
 @media (max-width: 767px) {
   #start {
-    background: url("../images/lines-start-top.png") no-repeat 50% 0, url("../images/lines-start-bottom.png") no-repeat 50% 100%, url("../images/bg-start.png") no-repeat 75% 0 / cover;
+    background-position: 75% 0;
   }
+}
+#start .lines {
+  position: absolute;
+  left: 50%;
+  margin-left: -1700px;
+}
+#start .lines.top {
+  top: 0;
+}
+#start .lines.bottom {
+  bottom: 0;
 }
 #start h3 {
   margin: 0 0 48px 0;
