@@ -208,9 +208,12 @@
                 animation="easeInOutQuart">
               </div>
               <div class="goal-meta">
-                <div ng-hide="getClass(vacationsMax, vacationsValue) == 'green'"><img src="public/images/ico-goal-1.png" alt=""/></div>
-                <div ng-show="getClass(vacationsMax, vacationsValue) == 'green'"><img src="public/images/ico-goal-1-color.png" alt=""/></div>
-                <span ng-hide="getClass(vacationsMax, vacationsValue) == 'green'">{{vacationsValue | currency:'$':0}}</span>
+                <div ng-hide="getClass(vacationsMax, vacationsValue) == 'green'"><img src="public/images/ico-goal-1.png"
+                                                                                      alt=""/></div>
+                <div ng-show="getClass(vacationsMax, vacationsValue) == 'green'"><img
+                  src="public/images/ico-goal-1-color.png" alt=""/></div>
+                <span
+                  ng-hide="getClass(vacationsMax, vacationsValue) == 'green'">{{vacationsValue | currency:'$':0}}</span>
                 <img ng-show="getClass(vacationsMax, vacationsValue) == 'green'" src="public/images/check.png" alt=""/>
               </div>
             </div>
@@ -237,10 +240,14 @@
                 animation="easeInOutQuart">
               </div>
               <div class="goal-meta">
-                <div ng-hide="getClass(universityMax, universityValue) == 'green'"><img src="public/images/ico-goal-2.png" alt=""/></div>
-                <div ng-show="getClass(universityMax, universityValue) == 'green'"><img src="public/images/ico-goal-2-color.png" alt=""/></div>
-                <span ng-hide="getClass(universityMax, universityValue) == 'green'">{{universityValue | currency:'$':0}}</span>
-                <img ng-show="getClass(universityMax, universityValue) == 'green'" src="public/images/check.png" alt=""/>
+                <div ng-hide="getClass(universityMax, universityValue) == 'green'"><img
+                  src="public/images/ico-goal-2.png" alt=""/></div>
+                <div ng-show="getClass(universityMax, universityValue) == 'green'"><img
+                  src="public/images/ico-goal-2-color.png" alt=""/></div>
+                <span
+                  ng-hide="getClass(universityMax, universityValue) == 'green'">{{universityValue | currency:'$':0}}</span>
+                <img ng-show="getClass(universityMax, universityValue) == 'green'" src="public/images/check.png"
+                     alt=""/>
               </div>
             </div>
             <div class="goal-amount">
@@ -266,8 +273,10 @@
                 animation="easeInOutQuart">
               </div>
               <div class="goal-meta">
-                <div ng-hide="getClass(concertMax, concertValue) == 'green'"><img src="public/images/ico-goal-3.png" alt=""/></div>
-                <div ng-show="getClass(concertMax, concertValue) == 'green'"><img src="public/images/ico-goal-3-color.png" alt=""/></div>
+                <div ng-hide="getClass(concertMax, concertValue) == 'green'"><img src="public/images/ico-goal-3.png"
+                                                                                  alt=""/></div>
+                <div ng-show="getClass(concertMax, concertValue) == 'green'"><img
+                  src="public/images/ico-goal-3-color.png" alt=""/></div>
                 <span ng-hide="getClass(concertMax, concertValue) == 'green'">{{concertValue | currency:'$':0}}</span>
                 <img ng-show="getClass(concertMax, concertValue) == 'green'" src="public/images/check.png" alt=""/>
               </div>
@@ -295,8 +304,10 @@
                 animation="easeInOutQuart">
               </div>
               <div class="goal-meta">
-                <div ng-hide="getClass(carMax, carValue) == 'green'"><img src="public/images/ico-goal-4.png" alt=""/></div>
-                <div ng-show="getClass(carMax, carValue) == 'green'"><img src="public/images/ico-goal-4-color.png" alt=""/></div>
+                <div ng-hide="getClass(carMax, carValue) == 'green'"><img src="public/images/ico-goal-4.png" alt=""/>
+                </div>
+                <div ng-show="getClass(carMax, carValue) == 'green'"><img src="public/images/ico-goal-4-color.png"
+                                                                          alt=""/></div>
                 <span ng-hide="getClass(carMax, carValue) == 'green'">{{carValue | currency:'$':0}}</span>
                 <img ng-show="getClass(carMax, carValue) == 'green'" src="public/images/check.png" alt=""/>
               </div>
@@ -311,44 +322,45 @@
       </div>
     </div>
   </section>
-  <section id="budgets">
+  <section id="budgets" ng-controller="BudgetsController">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-offset-1 col-lg-5">
           <div class="budgets-wrapper">
             <div class="budget">
               <img src="public/images/ico-budget-1.png" alt=""/>
-              <h5>Transporte <span>Presupuesto: <strong>$300</strong></span></h5>
+              <h5>Transporte <span>Presupuesto: <strong>{{transportationMax | currency:'$':0}}</strong></span></h5>
 
               <div>
 
-                <div class="horizontal-slider red">
-                  <div style="width: 90%;"></div>
-                  <span style="left: 90%;"><span>$283</span></span>
+                <div class="horizontal-slider" ng-class="getClass(transportationMax, transportationVal)">
+                  <div style="{{getStyle(transportationMax, transportationVal, 'width')}}"></div>
+                  <span style="{{getStyle(transportationMax, transportationVal, 'left')}}"><span>{{transportationVal | currency:'$':0}}</span></span>
                 </div>
               </div>
             </div>
             <div class="budget">
               <img src="public/images/ico-budget-2.png" alt=""/>
-              <h5>supermercado <span>Presupuesto: <strong>$500</strong></span></h5>
+              <h5>supermercado <span>Presupuesto: <strong>{{marketMax | currency:'$':0}}</strong></span></h5>
 
               <div>
 
-                <div class="horizontal-slider green">
-                  <div style="width: 90%;"></div>
-                  <span style="left: 90%;"><span>$283</span></span>
+                <div class="horizontal-slider" ng-class="getClass(marketMax, marketVal)">
+                  <div style="{{getStyle(marketMax, marketVal, 'width')}}"></div>
+                  <span
+                    style="{{getStyle(marketMax, marketVal, 'left')}}"><span>{{marketVal | currency:'$':0}}</span></span>
                 </div>
               </div>
             </div>
             <div class="budget">
               <img src="public/images/ico-budget-3.png" alt=""/>
-              <h5>restaurantes <span>Presupuesto: <strong>$125</strong></span></h5>
+              <h5>restaurantes <span>Presupuesto: <strong>{{restaurantsMax | currency:'$':0}}</strong></span></h5>
 
               <div>
 
-                <div class="horizontal-slider yellow">
-                  <div style="width: 90%;"></div>
-                  <span style="left: 90%;"><span style="left: 90%;"><span>$283</span></span></span>
+                <div class="horizontal-slider" ng-class="getClass(restaurantsMax, restaurantsVal)">
+                  <div style="{{getStyle(restaurantsMax, restaurantsVal, 'width')}}"></div>
+                  <span style="{{getStyle(restaurantsMax, restaurantsVal, 'left')}}"><span>{{restaurantsVal | currency:'$':0}}</span></span>
                 </div>
               </div>
             </div>
