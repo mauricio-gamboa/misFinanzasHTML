@@ -422,72 +422,73 @@ Home Header Styles
 .header {
   position: relative;
 }
-.header h1 {
+.header .lines {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1700px;
+}
+.header-wrapper {
+  position: relative;
+}
+.header-wrapper h1 {
   font-family: 'ProximaNova-Light';
   color: white;
   font-size: 61px;
   line-height: 63px;
   margin: 0;
 }
-.header p {
+.header-wrapper p {
   color: white;
   margin: 0;
   font-size: 19px;
   line-height: 31px;
 }
-.header .lines,
-.header .hand {
+.header-wrapper .hand {
   position: absolute;
   bottom: 0;
-}
-.header.home {
-  height: 770px;
-}
-.header.home .header-home-text {
-  width: 50%;
-  padding-top: 150px;
-}
-.header.home .header-home-text h1 {
-  margin-bottom: 35px;
-}
-.header.home .lines {
-  left: 50%;
-  margin-left: -1700px;
-}
-.header.home .hand {
   right: 73px;
 }
-.header.home .links {
+.header-wrapper.home {
+  height: 770px;
+}
+.header-wrapper.home .header-home-text {
+  padding-top: 150px;
+}
+.header-wrapper.home .header-home-text h1 {
+  margin-bottom: 35px;
+}
+.header-wrapper.home .links {
   margin-top: 50px;
   line-height: 54px;
 }
-.header.home .links > * {
+.header-wrapper.home .links > * {
   display: inline-block;
 }
-.header.home .links .quotes-1 {
+.header-wrapper.home .links .quotes-1 {
   margin-left: 38px;
   font-size: 28px;
   vertical-align: middle;
 }
-.header.home .links .btn-1 {
+.header-wrapper.home .links .btn-1 {
   width: 178px;
   height: 54px;
   line-height: 54px;
   font-size: 18px;
 }
-.header.home .link-1 {
+.header-wrapper.home .link-1 {
   z-index: 10;
   position: absolute;
   bottom: 23px;
   right: 0;
 }
-.header.home .store-links {
+.header-wrapper.home .store-links {
   z-index: 10;
   position: absolute;
   bottom: 27px;
   left: 0;
 }
-.header.home .store-links a {
+.header-wrapper.home .store-links a {
   margin-right: 13px;
 }
 #home-header {

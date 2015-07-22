@@ -599,6 +599,17 @@ Home Header Styles
 .header {
   position: relative;
 
+  .lines {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1700px;
+  }
+}
+
+.header-wrapper {
+  position: relative;
+
   h1 {
     font-family: 'ProximaNova-Light';
     color: white;
@@ -614,31 +625,21 @@ Home Header Styles
     line-height: 31px;
   }
 
-  .lines,
   .hand {
     position: absolute;
     bottom: 0;
+    right: 73px;
   }
 
   &.home {
     height: 770px;
 
     .header-home-text {
-      width: 50%;
       padding-top: 150px;
 
       h1 {
         margin-bottom: 35px;
       }
-    }
-
-    .lines {
-      left: 50%;
-      margin-left: -1700px;
-    }
-
-    .hand {
-      right: 73px;
     }
 
     .links {
