@@ -97,3 +97,16 @@ myApp.directive('changeMenu', ['deviceDetector', '$window', '$document', functio
     }
   };
 }]);
+
+myApp.directive('owlSingleNav', [function () {
+  return {
+    restrict: 'A',
+
+    link: function (scope, element) {
+      element.owlCarousel({
+        autoPlay: true,
+        singleItem: true
+      });
+    }
+  };
+}]);

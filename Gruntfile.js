@@ -29,6 +29,7 @@ module.exports = function (grunt) {
       js: {
         src: [
           'bower_components/jquery/dist/jquery.js',
+          'bower_components/OwlCarousel/owl-carousel/owl.carousel.js',
           'bower_components/bootstrap/dist/js/bootstrap.js',
           'bower_components/angular/angular.js',
           'bower_components/angular-svg-round-progressbar/build/roundProgress.js',
@@ -43,6 +44,8 @@ module.exports = function (grunt) {
       combine: {
         files: {
           'public/styles/libs.min.css': [
+            'bower_components/OwlCarousel/owl-carousel/owl.carousel.css',
+            'bower_components/OwlCarousel/owl-carousel/owl.theme.css',
             'bower_components/bootstrap/dist/css/bootstrap.css'
           ],
           'public/styles/styles.min.css': [
