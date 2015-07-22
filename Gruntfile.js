@@ -31,7 +31,9 @@ module.exports = function (grunt) {
           'bower_components/jquery/dist/jquery.js',
           'bower_components/bootstrap/dist/js/bootstrap.js',
           'bower_components/angular/angular.js',
-          'bower_components/angular-svg-round-progressbar/build/roundProgress.js'
+          'bower_components/angular-svg-round-progressbar/build/roundProgress.js',
+          'bower_components/re-tree/re-tree.js',
+          'bower_components/ng-device-detector/ng-device-detector.js'
         ],
         dest: 'public/js/libs.js'
       }

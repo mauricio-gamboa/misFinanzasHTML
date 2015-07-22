@@ -292,19 +292,54 @@ Nav Styles
   text-transform: uppercase;
   font-size: 13px;
 }
+.smaller-menu #nav {
+  height: 88px;
+}
+.smaller-menu #nav > .bg-white {
+  height: 80px;
+}
+.smaller-menu #nav > .bg-white .logo {
+  margin-top: 5px;
+}
+.smaller-menu #nav > .bg-white #main-menu {
+  height: 80px;
+  line-height: 80px;
+}
+.smaller-menu #nav > .bg-white #main-menu .main-menu li a {
+  height: 80px;
+  line-height: 72px;
+}
+.smaller-menu #nav > .bg-white #main-menu .btn-1 {
+  margin-top: 20px;
+}
+.smaller-menu #home-header {
+  margin-top: 88px;
+}
 #nav {
+  box-shadow: 0 0 5px -1px #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: #e60000;
+  transition: height 0.5s ease;
+  height: 111px;
   padding-bottom: 8px;
+  z-index: 15;
 }
 #nav .bg-white {
+  transition: height 0.5s ease;
   height: 103px;
   box-shadow: 0 0 5px -1px #000000;
 }
 #nav .logo {
+  transition: margin-top 0.5s ease;
   float: left;
   margin-top: 13px;
 }
 #nav #main-menu {
+  transition: height 0.5s ease;
+  transition: line-height 0.5s ease;
   float: right;
   line-height: 103px;
   height: 103px;
@@ -314,9 +349,12 @@ Nav Styles
   margin-right: 35px;
 }
 #nav #main-menu .btn-1 {
-  width: 133px;
+  transition: margin-top 0.5s ease;
+  float: left;
   height: 44px;
   line-height: 44px;
+  margin-top: 30px;
+  width: 133px;
 }
 .main-menu {
   margin: 0;
@@ -335,6 +373,8 @@ Nav Styles
   color: #7aaa37;
 }
 .main-menu li a {
+  transition: height 0.5s ease;
+  transition: line-height 0.5s ease;
   color: #474d5a;
   font-family: 'proxima_nova_semibold';
   text-transform: uppercase;
@@ -453,6 +493,8 @@ Home Header Styles
 #home-header {
   background: url("../images/bg-header-home.jpg") no-repeat scroll 50% 0 / cover;
   overflow: hidden;
+  transition: margin-top 0.5s ease;
+  margin-top: 111px;
 }
 /***************************
 ****************************
@@ -593,6 +635,22 @@ Goals Styles
 }
 .goal.last {
   border-right: none;
+}
+.goal.red .slider-wrapper .goal-meta span {
+  color: #ef512c;
+}
+.goal.orange .slider-wrapper .goal-meta span {
+  color: #ff890a;
+}
+.goal.yellow .slider-wrapper .goal-meta span {
+  color: #dbce00;
+}
+.goal.green .slider-wrapper .goal-meta span {
+  color: #8dc63f;
+}
+.goal.green .slider-wrapper .goal-meta > div {
+  margin-bottom: 5px;
+  margin-top: 40px;
 }
 /***************************
 ****************************

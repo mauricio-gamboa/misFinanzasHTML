@@ -22,14 +22,19 @@ Colors & Vars
 @red-3: #fe7404;
 @red-4: #560007;
 @red-5: #3f0005;
+@red-6: #ef512c;
 
 @green-1: #8dc63f;
 @green-2: #7aaa37;
 @green-3: #02c345;
 @green-4: #395a0c;
 @green-5: #2e480a;
+@green-6: #8dc63f;
 
 @yellow-1: #efc91a;
+@yellow-2: #dbce00;
+
+@orange-1: #ff890a;
 
 /***************************
 ****************************
@@ -430,25 +435,69 @@ Nav Styles
   font-size: 13px;
 }
 
+.smaller-menu {
+  #nav {
+    height: 88px;
+
+    > .bg-white {
+      height: 80px;
+
+      .logo {
+        margin-top: 5px;
+      }
+
+      #main-menu {
+        height: 80px;
+        line-height: 80px;
+
+        .main-menu {
+          li {
+            a {
+              height: 80px;
+              line-height: 72px;
+            }
+          }
+        }
+
+        .btn-1 {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  #home-header {
+    margin-top: 88px;
+  }
+}
+
 #nav {
+  .box-shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: @red-1;
+  transition: height 0.5s ease;
+  height: 111px;
   padding-bottom: 8px;
-  //position: fixed;
-  //top: 0;
-  //left: 0;
-  //width: 100%;
+  z-index: 15;
 
   .bg-white {
+    transition: height 0.5s ease;
     height: 103px;
     .box-shadow;
   }
 
   .logo {
+    transition: margin-top 0.5s ease;
     float: left;
     margin-top: 13px;
   }
 
   #main-menu {
+    transition: height 0.5s ease;
+    transition: line-height 0.5s ease;
     float: right;
     line-height: 103px;
     height: 103px;
@@ -459,9 +508,12 @@ Nav Styles
     }
 
     .btn-1 {
-      width: 133px;
+      transition: margin-top 0.5s ease;
+      float: left;
       height: 44px;
       line-height: 44px;
+      margin-top: 30px;
+      width: 133px;
     }
   }
 }
@@ -488,6 +540,8 @@ Nav Styles
     }
 
     a {
+      transition: height 0.5s ease;
+      transition: line-height 0.5s ease;
       .nav-text-settings;
       .border-top(8px, white);
       height: 103px;
@@ -632,7 +686,8 @@ Home Header Styles
 #home-header {
   background: url("../images/bg-header-home.jpg") no-repeat scroll 50% 0 / cover;
   overflow: hidden;
-  //margin-top: 111px;
+  transition: margin-top 0.5s ease;
+  margin-top: 111px;
 }
 
 /***************************
@@ -802,6 +857,53 @@ Goals Styles
 
   &.last {
     border-right: none;
+  }
+
+  &.red {
+    .slider-wrapper {
+      .goal-meta {
+        span {
+          color: @red-6;
+        }
+      }
+    }
+  }
+
+  &.orange {
+    .slider-wrapper {
+      .goal-meta {
+        span {
+          color: @orange-1;
+        }
+      }
+    }
+  }
+
+  &.yellow {
+    .slider-wrapper {
+      .goal-meta {
+        span {
+          color: @yellow-2;
+        }
+      }
+    }
+  }
+
+  &.green {
+    .slider-wrapper {
+      .goal-meta {
+        span {
+          color: @green-6;
+        }
+      }
+
+      .goal-meta {
+        > div {
+          margin-bottom: 5px;
+          margin-top: 40px;
+        }
+      }
+    }
   }
 }
 
@@ -1114,7 +1216,7 @@ Footer Styled
     margin: 0;
 
     li {
-      margin:  0 15px;
+      margin: 0 15px;
 
       a {
         font-family: 'open_sanssemibold';
