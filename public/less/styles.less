@@ -629,6 +629,10 @@ Home Header Styles
     position: absolute;
     bottom: 0;
     right: 73px;
+
+    @media @medium {
+      right: -45px;
+    }
   }
 
   &.home {
@@ -669,6 +673,10 @@ Home Header Styles
       position: absolute;
       bottom: 23px;
       right: 0;
+
+      @media @medium {
+        font-size: 19px;
+      }
     }
 
     .store-links {
@@ -722,7 +730,12 @@ Features Styles
     margin: 15px 0;
     background: url("../images/bg-line-1.png") no-repeat 50% 100%;
     .font-settings-2;
-    padding-bottom: 25px;
+    min-height: 70px;
+
+    @media @medium {
+      min-height: 90px;
+      font-size: 15px;
+    }
   }
 }
 
@@ -1038,7 +1051,7 @@ Budget Styles
 }
 
 .budgets-text {
-  padding-top: 235px;
+  padding-top: 200px;
 }
 
 /***************************
@@ -1086,6 +1099,12 @@ Platforms Styles
   }
 }
 
+.platforms-image {
+  > img {
+    max-width: 100%;
+  }
+}
+
 /***************************
 ****************************
 Options Styles
@@ -1129,6 +1148,10 @@ Options Styles
       font-size: 14px;
       float: left;
       margin-right: 25px;
+
+      @media @medium {
+        width: 174px;
+      }
 
       &:last-child {
         margin-right: 0;

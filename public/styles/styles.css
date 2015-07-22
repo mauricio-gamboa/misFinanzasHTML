@@ -449,6 +449,11 @@ Home Header Styles
   bottom: 0;
   right: 73px;
 }
+@media (min-width: 993px) and (max-width: 1200px) {
+  .header-wrapper .hand {
+    right: -45px;
+  }
+}
 .header-wrapper.home {
   height: 770px;
 }
@@ -481,6 +486,11 @@ Home Header Styles
   position: absolute;
   bottom: 23px;
   right: 0;
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  .header-wrapper.home .link-1 {
+    font-size: 19px;
+  }
 }
 .header-wrapper.home .store-links {
   z-index: 10;
@@ -525,7 +535,13 @@ Features Styles
   background: url("../images/bg-line-1.png") no-repeat 50% 100%;
   font-size: 17px;
   line-height: 24px;
-  padding-bottom: 25px;
+  min-height: 70px;
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  .feature h4 {
+    min-height: 90px;
+    font-size: 15px;
+  }
 }
 /***************************
 ****************************
@@ -760,7 +776,7 @@ Budget Styles
   color: #efc91a;
 }
 .budgets-text {
-  padding-top: 235px;
+  padding-top: 200px;
 }
 /***************************
 ****************************
@@ -797,6 +813,9 @@ Platforms Styles
 }
 .platforms-text ul li > div img {
   vertical-align: middle;
+}
+.platforms-image > img {
+  max-width: 100%;
 }
 /***************************
 ****************************
@@ -837,6 +856,11 @@ Options Styles
   font-size: 14px;
   float: left;
   margin-right: 25px;
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  .options-text .links .my-btn {
+    width: 174px;
+  }
 }
 .options-text .links .my-btn:last-child {
   margin-right: 0;
