@@ -1033,6 +1033,7 @@ Budget Styles
 }
 @media (max-width: 767px) {
   .budgets-text {
+    text-align: center;
     padding-top: 0;
   }
 }
