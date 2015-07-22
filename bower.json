@@ -16,6 +16,8 @@
   ],
   "dependencies": {
     "bootstrap": "*",
-    "angular": "*"
+    "angular": "*",
+    "angular-svg-round-progressbar": "~0.2.10",
+    "ng-device-detector": "~1.1.7"
   }
 }

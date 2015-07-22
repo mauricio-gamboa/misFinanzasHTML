@@ -39934,4 +39934,784 @@ var minlengthDirective = function() {
 
 })(window, document);
 
-!window.angular.$$csp() && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
+!window.angular.$$csp() && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');;// shim layer with setTimeout fallback
+// credit Erik Möller and http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+'use strict';
+
+(function() {
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame){
+        window.requestAnimationFrame = function(callback) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+
+    if (!window.cancelAnimationFrame){
+        window.cancelAnimationFrame = function(id) {
+            window.clearTimeout(id);
+        };
+    }
+
+}());
+
+angular.module('angular-svg-round-progress', []);
+
+'use strict';
+
+angular.module('angular-svg-round-progress').constant('roundProgressConfig', {
+    max:            50,
+    semi:           false,
+    rounded:        false,
+    clockwise:      true,
+    radius:         100,
+    color:          "#45ccce",
+    bgcolor:        "#eaeaea",
+    stroke:         15,
+    iterations:     50,
+    animation:      "easeOutCubic"
+});
+
+'use strict';
+
+angular.module('angular-svg-round-progress').service('roundProgressService', [function(){
+    var service = {};
+    var isNumber = angular.isNumber;
+
+    // credits to http://modernizr.com/ for the feature test
+    service.isSupported = !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect);
+
+    // utility function
+    var polarToCartesian = function(centerX, centerY, radius, angleInDegrees) {
+        var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+
+        return {
+            x: centerX + (radius * Math.cos(angleInRadians)),
+            y: centerY + (radius * Math.sin(angleInRadians))
+        };
+    };
+
+    // deals with floats passed as strings
+    service.toNumber = function(value){
+        return isNumber(value) ? value : parseFloat((value + '').replace(',', '.'));
+    };
+
+    // credit to http://stackoverflow.com/questions/5736398/how-to-calculate-the-svg-path-for-an-arc-of-a-circle
+    service.updateState = function(val, total, R, ring, size, isSemicircle) {
+
+        if(!size) return ring;
+
+        var value       = val >= total ? total - 0.00001 : val,
+            type        = isSemicircle ? 180 : 359.9999,
+            perc        = total === 0 ? 0 : (value / total) * type,
+            x           = size/2,
+            start       = polarToCartesian(x, x, R, perc), // in this case x and y are the same
+            end         = polarToCartesian(x, x, R, 0),
+            arcSweep    = (perc <= 180 ? "0" : "1"),
+            d = [
+                "M", start.x, start.y,
+                "A", R, R, 0, arcSweep, 0, end.x, end.y
+            ].join(" ");
+
+        return ring.attr('d', d);
+    };
+
+    // Easing functions by Robert Penner
+    // Source: http://www.robertpenner.com/easing/
+    // License: http://www.robertpenner.com/easing_terms_of_use.html
+
+    service.animations = {
+
+        // t: Current iteration
+        // b: Start value
+        // c: Change in value
+        // d: Total iterations
+        // jshint eqeqeq: false, -W041: true
+
+        linearEase: function(t, b, c, d) {
+            return c * t / d + b;
+        },
+
+        easeInQuad: function (t, b, c, d) {
+            return c*(t/=d)*t + b;
+        },
+
+        easeOutQuad: function (t, b, c, d) {
+            return -c *(t/=d)*(t-2) + b;
+        },
+
+        easeInOutQuad: function (t, b, c, d) {
+            if ((t/=d/2) < 1) return c/2*t*t + b;
+            return -c/2 * ((--t)*(t-2) - 1) + b;
+        },
+
+        easeInCubic: function (t, b, c, d) {
+            return c*(t/=d)*t*t + b;
+        },
+
+        easeOutCubic: function (t, b, c, d) {
+            return c*((t=t/d-1)*t*t + 1) + b;
+        },
+
+        easeInOutCubic: function (t, b, c, d) {
+            if ((t/=d/2) < 1) return c/2*t*t*t + b;
+            return c/2*((t-=2)*t*t + 2) + b;
+        },
+
+        easeInQuart: function (t, b, c, d) {
+            return c*(t/=d)*t*t*t + b;
+        },
+
+        easeOutQuart: function (t, b, c, d) {
+            return -c * ((t=t/d-1)*t*t*t - 1) + b;
+        },
+
+        easeInOutQuart: function (t, b, c, d) {
+            if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+            return -c/2 * ((t-=2)*t*t*t - 2) + b;
+        },
+
+        easeInQuint: function (t, b, c, d) {
+            return c*(t/=d)*t*t*t*t + b;
+        },
+
+        easeOutQuint: function (t, b, c, d) {
+            return c*((t=t/d-1)*t*t*t*t + 1) + b;
+        },
+
+        easeInOutQuint: function (t, b, c, d) {
+            if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+            return c/2*((t-=2)*t*t*t*t + 2) + b;
+        },
+
+        easeInSine: function (t, b, c, d) {
+            return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+        },
+
+        easeOutSine: function (t, b, c, d) {
+            return c * Math.sin(t/d * (Math.PI/2)) + b;
+        },
+
+        easeInOutSine: function (t, b, c, d) {
+            return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+        },
+
+        easeInExpo: function (t, b, c, d) {
+            return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+        },
+
+        easeOutExpo: function (t, b, c, d) {
+            return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+        },
+
+        easeInOutExpo: function (t, b, c, d) {
+            if (t==0) return b;
+            if (t==d) return b+c;
+            if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+            return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+        },
+
+        easeInCirc: function (t, b, c, d) {
+            return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+        },
+
+        easeOutCirc: function (t, b, c, d) {
+            return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+        },
+
+        easeInOutCirc: function (t, b, c, d) {
+            if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+            return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+        },
+
+        easeInElastic: function (t, b, c, d) {
+            var s=1.70158;var p=0;var a=c;
+            if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*0.3;
+            if (a < Math.abs(c)) { a=c; s=p/4; }
+            else s = p/(2*Math.PI) * Math.asin (c/a);
+            return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+        },
+
+        easeOutElastic: function (t, b, c, d) {
+            var s=1.70158;var p=0;var a=c;
+            if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*0.3;
+            if (a < Math.abs(c)) { a=c; s=p/4; }
+            else s = p/(2*Math.PI) * Math.asin (c/a);
+            return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+        },
+
+        easeInOutElastic: function (t, b, c, d) {
+            // jshint eqeqeq: false, -W041: true
+            var s=1.70158;var p=0;var a=c;
+            if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(0.3*1.5);
+            if (a < Math.abs(c)) { a=c; s=p/4; }
+            else s = p/(2*Math.PI) * Math.asin (c/a);
+            if (t < 1) return -0.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+            return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*0.5 + c + b;
+        },
+
+        easeInBack: function (t, b, c, d, s) {
+            // jshint eqeqeq: false, -W041: true
+            if (s == undefined) s = 1.70158;
+            return c*(t/=d)*t*((s+1)*t - s) + b;
+        },
+
+        easeOutBack: function (t, b, c, d, s) {
+            // jshint eqeqeq: false, -W041: true
+            if (s == undefined) s = 1.70158;
+            return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+        },
+
+        easeInOutBack: function (t, b, c, d, s) {
+            // jshint eqeqeq: false, -W041: true
+            if (s == undefined) s = 1.70158;
+            if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+            return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+        },
+
+        easeInBounce: function (t, b, c, d) {
+            return c - service.animations.easeOutBounce (d-t, 0, c, d) + b;
+        },
+
+        easeOutBounce: function (t, b, c, d) {
+            if ((t/=d) < (1/2.75)) {
+                return c*(7.5625*t*t) + b;
+            } else if (t < (2/2.75)) {
+                return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
+            } else if (t < (2.5/2.75)) {
+                return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
+            } else {
+                return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
+            }
+        },
+
+        easeInOutBounce: function (t, b, c, d) {
+            if (t < d/2) return service.animations.easeInBounce (t*2, 0, c, d) * 0.5 + b;
+            return service.animations.easeOutBounce (t*2-d, 0, c, d) * 0.5 + c*0.5 + b;
+        }
+    };
+
+    return service;
+}]);
+
+'use strict';
+
+angular.module('angular-svg-round-progress')
+    .directive('roundProgress', ['$window', 'roundProgressService', 'roundProgressConfig', function($window, service, roundProgressConfig){
+
+            var base = {
+                restrict: "EA",
+                replace: true,
+                transclude: true
+            };
+
+            if(!service.isSupported){
+                return angular.extend(base, {
+                    // placeholder element to keep the structure
+                    template: '<div class="round-progress" ng-transclude></div>'
+                });
+            }
+
+            return angular.extend(base, {
+                scope:{
+                    current:        "=",
+                    max:            "=",
+                    semi:           "=",
+                    rounded:        "=",
+                    clockwise:      "=",
+                    radius:         "@",
+                    color:          "@",
+                    bgcolor:        "@",
+                    stroke:         "@",
+                    iterations:     "@",
+                    animation:      "@"
+                },
+                link: function (scope, element) {
+                    var ring        = element.find('path'),
+                        background  = element.find('circle'),
+                        options     = angular.copy(roundProgressConfig);
+
+                    var renderCircle = function(){
+                        var isSemicircle     = options.semi;
+                        var radius           = parseInt(options.radius) || 0;
+                        var stroke           = parseInt(options.stroke);
+                        var diameter         = radius*2;
+                        var backgroundSize   = radius - (stroke/2);
+
+                        element.css({
+                            "width":        diameter + "px",
+                            "height":       (isSemicircle ? radius : diameter) + "px",
+                            "overflow":     "hidden" // on some browsers the background overflows, if in semicircle mode
+                        });
+
+                        ring.css({
+                            "stroke":           options.color,
+                            "stroke-width":     stroke,
+                            "stroke-linecap":   options.rounded ? "round": "butt"
+                        });
+
+                        if(isSemicircle){
+                            ring.attr("transform", options.clockwise ? "translate("+ 0 +","+ diameter +") rotate(-90)" : "translate("+ diameter +", "+ diameter +") rotate(90) scale(-1, 1)");
+                        }else{
+                            ring.attr("transform", options.clockwise ? "" : "scale(-1, 1) translate("+ (-diameter) +" 0)");
+                        }
+
+                        background.attr({
+                            "cx":           radius,
+                            "cy":           radius,
+                            "r":            backgroundSize >= 0 ? backgroundSize : 0
+                        }).css({
+                            "stroke":       options.bgcolor,
+                            "stroke-width": stroke
+                        });
+                    };
+
+                    var renderState = function(newValue, oldValue){
+                        if(!angular.isDefined(newValue)){
+                            return false;
+                        }
+
+                        var max                 = service.toNumber(options.max || 0);
+                        var current             = newValue > max ? max : (newValue < 0 ? 0 : newValue);
+                        var start               = (oldValue === current || oldValue < 0) ? 0 : (oldValue || 0); // fixes the initial animation
+                        var changeInValue       = current - start;
+
+                        var easingAnimation     = service.animations[options.animation];
+                        var currentIteration    = 0;
+                        var totalIterations     = parseInt(options.iterations);
+
+                        var radius              = options.radius;
+                        var circleSize          = radius - (options.stroke/2);
+                        var elementSize         = radius*2;
+
+                        (function animation(){
+                            service.updateState(
+                                easingAnimation(currentIteration, start, changeInValue, totalIterations),
+                                max,
+                                circleSize,
+                                ring,
+                                elementSize,
+                                options.semi);
+
+                            if(currentIteration < totalIterations){
+                                $window.requestAnimationFrame(animation);
+                                currentIteration++;
+                            }
+                        })();
+                    };
+
+                    scope.$watchCollection('[current, max, semi, rounded, clockwise, radius, color, bgcolor, stroke, iterations]', function(newValue, oldValue, scope){
+
+                        // pretty much the same as angular.extend,
+                        // but this skips undefined values and internal angular keys
+                        angular.forEach(scope, function(value, key){
+                            // note the scope !== value is because `this` is part of the scope
+                            if(key.indexOf('$') && scope !== value && angular.isDefined(value)){
+                                options[key] = value;
+                            }
+                        });
+
+                        renderCircle();
+                        renderState(service.toNumber(newValue[0]), service.toNumber(oldValue[0]));
+                    });
+                },
+                template:[
+                    '<svg class="round-progress" xmlns="http://www.w3.org/2000/svg">',
+                        '<circle fill="none"/>',
+                        '<path fill="none"/>',
+                        '<g ng-transclude></g>',
+                    '</svg>'
+                ].join('\n')
+            });
+
+        }]);
+;/* global window */
+/* global angular */
+/* global module */
+
+(function (module, window, angular) {
+    "use strict";
+
+    function test(string, regex) {
+        if (typeof regex === 'string' || regex instanceof String) {
+            regex=new RegExp(regex);
+        }
+
+        if (regex instanceof RegExp) {
+            return regex.test(string);
+        }
+        else if (regex && Array.isArray(regex.and)) {
+            return regex.and.every(function (item) {
+                return test(string, item);
+            });
+        }
+        else if (regex && Array.isArray(regex.or)) {
+            return regex.or.some(function (item) {
+                return test(string, item);
+            });
+        }
+        else if (regex && regex.not) {
+            return !test(string, regex.not);
+        }
+        else {
+            return false;
+        }
+    }
+
+    function exec(string, regex) {
+        if (typeof regex === 'string' || regex instanceof String) {
+            regex=new RegExp(regex);
+        }
+
+        if (regex instanceof RegExp) {
+            return regex.exec(string);
+        }
+        else if (regex && Array.isArray(regex)) {
+            return regex.reduce(function (res, item) {
+                return (!!res) ? res : exec(string, item);
+            }, null);
+        }
+        else {
+            return null;
+        }
+    }
+
+    if (!!angular) {
+        angular.module("reTree", []).factory("reTree", [function () {
+            return {
+                test: test,
+                exec: exec
+            };
+        }]);
+    }
+
+    if (!!window) {
+        window.reTree = {
+            test: test,
+            exec: exec
+        };
+    }
+
+    if (!!module) {
+        module.exports = {
+            test: test,
+            exec: exec
+        };
+    }
+})(typeof module === 'undefined' ? null : module, typeof window === 'undefined' ? null : window, typeof angular === 'undefined' ? null : angular);
+;(function (angular) {
+    "use strict";
+    angular.module("ng.deviceDetector", ["reTree"])
+        .constant("BROWSERS", {
+            CHROME: "chrome",
+            FIREFOX: "firefox",
+            SAFARI: "safari",
+            OPERA: "opera",
+            IE: "ie",
+            MS_EDGE: "ms-edge",
+            PS4: "ps4",
+            VITA: "vita",
+            UNKNOWN: "unknown"
+        })
+        .constant("DEVICES", {
+            ANDROID: "android",
+            I_PAD: "ipad",
+            IPHONE: "iphone",
+            I_POD: "ipod",
+            BLACKBERRY: "blackberry",
+            FIREFOX_OS: "firefox-os",
+            CHROME_BOOK: "chrome-book",
+            WINDOWS_PHONE: "windows-phone",
+            PS4: "ps4",
+            VITA: "vita",
+            UNKNOWN: "unknown"
+        })
+        .constant("OS", {
+            WINDOWS: "windows",
+            MAC: "mac",
+            IOS: "ios",
+            ANDROID: "android",
+            LINUX: "linux",
+            UNIX: "unix",
+            FIREFOX_OS: "firefox-os",
+            CHROME_OS: "chrome-os",
+            WINDOWS_PHONE: "windows-phone",
+            PS4: "ps4",
+            VITA: "vita",
+            UNKNOWN: "unknown"
+        })
+        .constant("OS_VERSIONS", {
+            WINDOWS_3_11: "windows-3-11",
+            WINDOWS_95: "windows-95",
+            WINDOWS_ME: "windows-me",
+            WINDOWS_98: "windows-98",
+            WINDOWS_CE: "windows-ce",
+            WINDOWS_2000: "windows-2000",
+            WINDOWS_XP: "windows-xp",
+            WINDOWS_SERVER_2003: "windows-server-2003",
+            WINDOWS_VISTA: "windows-vista",
+            WINDOWS_7: "windows-7",
+            WINDOWS_8_1: "windows-8-1",
+            WINDOWS_8: "windows-8",
+            WINDOWS_10: "windows-10",
+            WINDOWS_PHONE_7_5: "windows-phone-7-5",
+            WINDOWS_PHONE_10: "windows-phone-10",
+            WINDOWS_NT_4_0: "windows-nt-4-0",
+            UNKNOWN: "unknown"
+        })
+        .service("detectUtils", ["deviceDetector", "DEVICES", "BROWSERS", "OS",
+            function (deviceDetector, DEVICES, BROWSERS, OS) {
+                var deviceInfo = deviceDetector;
+
+                this.isMobile = function () {
+                    return deviceInfo.device !== 'unknown';
+                };
+
+                this.isAndroid = function () {
+                    return (deviceInfo.device === DEVICES.ANDROID || deviceInfo.OS === OS.ANDROID);
+                };
+
+                this.isIOS = function () {
+                    return (deviceInfo.os === OS.IOS || deviceInfo.device === DEVICES.I_POD || deviceInfo.device === DEVICES.IPHONE);
+                };
+            }
+        ])
+        .factory("deviceDetector", ["$window", "DEVICES", "BROWSERS", "OS", "OS_VERSIONS","reTree",
+            function ($window, DEVICES, BROWSERS, OS, OS_VERSIONS,reTree) {
+
+                var OS_RE = {
+                    WINDOWS: {and: [{or: [/\bWindows|(Win\d\d)\b/, /\bWin 9x\b/]}, {not: /\bWindows Phone\b/}]},
+                    MAC: /\bMac OS\b/,
+                    IOS: {or: [/\biPad\b/, /\biPhone\b/, /\biPod\b/]},
+                    ANDROID: {and:[/\bAndroid\b/,{not:/Windows Phone/}]},
+                    LINUX: /\bLinux\b/,
+                    UNIX: /\bUNIX\b/,
+                    FIREFOX_OS: {and: [/\bFirefox\b/, /Mobile\b/]},
+                    CHROME_OS: /\bCrOS\b/,
+                    WINDOWS_PHONE: {or:[/\bIEMobile\b/,/\bWindows Phone\b/]},
+                    PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
+                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/
+                };
+
+                var BROWSERS_RE = {
+                    CHROME: {and:[{or: [/\bChrome\b/, /\bCriOS\b/]},{not:{or:[/\bOPR\b/,/\bEdge\b/]}}]},
+                    FIREFOX: /\bFirefox\b/,
+                    SAFARI: {and:[/^((?!CriOS).)*\Safari\b.*$/,{not:{or:[/\bOPR\b/,/\bEdge\b/]}}]},
+                    OPERA: {or:[/Opera\b/,/\bOPR\b/]},
+                    IE: {or: [/\bMSIE\b/, /\bTrident\b/]},
+                    MS_EDGE: {or: [/\bEdge\b/]},
+                    PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
+                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/
+                };
+
+                var DEVICES_RE = {
+                    ANDROID: {and:[/\bAndroid\b/,{not:/Windows Phone/}]},
+                    I_PAD: /\biPad\b/,
+                    IPHONE: /\biPhone\b/,
+                    I_POD: /\biPod\b/,
+                    BLACKBERRY: /\bblackberry\b/,
+                    FIREFOX_OS: {and: [/\bFirefox\b/, /\bMobile\b/]},
+                    CHROME_BOOK: /\bCrOS\b/,
+                    WINDOWS_PHONE: {or:[/\bIEMobile\b/,/\bWindows Phone\b/]},
+                    PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
+                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/
+                };
+
+                var OS_VERSIONS_RE = {
+                    WINDOWS_3_11: /Win16/,
+                    WINDOWS_95: /(Windows 95|Win95|Windows_95)/,
+                    WINDOWS_ME: /(Win 9x 4.90|Windows ME)/,
+                    WINDOWS_98: /(Windows 98|Win98)/,
+                    WINDOWS_CE: /Windows CE/,
+                    WINDOWS_2000: /(Windows NT 5.0|Windows 2000)/,
+                    WINDOWS_XP: /(Windows NT 5.1|Windows XP)/,
+                    WINDOWS_SERVER_2003: /Windows NT 5.2/,
+                    WINDOWS_VISTA: /Windows NT 6.0/,
+                    WINDOWS_7: /(Windows 7|Windows NT 6.1)/,
+                    WINDOWS_8_1: /(Windows 8.1|Windows NT 6.3)/,
+                    WINDOWS_8: /(Windows 8|Windows NT 6.2)/,
+                    WINDOWS_10: /(Windows NT 10.0)/,
+                    WINDOWS_PHONE_7_5: /(Windows Phone OS 7.5)/,
+                    WINDOWS_PHONE_10: /(Windows Phone 10)/,
+                    WINDOWS_NT_4_0: {and:[/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/,{not:/Windows NT 10.0/}]}
+                };
+
+                var BROWSER_VERSIONS_RE_MAP = {
+                    CHROME:/\bChrome\/([\d\.]+)\b/,
+                    FIREFOX:/\bFirefox\/([\d\.]+)\b/,
+                    SAFARI:/\bVersion\/([\d\.]+)\b/,
+                    OPERA:[/\bVersion\/([\d\.]+)\b/,/\bOPR\/([\d\.]+)\b/],
+                    IE:[/\bMSIE ([\d\.]+\w?)\b/,/\brv:([\d\.]+\w?)\b/],
+                    MS_EDGE:/\bEdge\/([\d\.]+)\b/
+                };
+
+                var BROWSER_VERSIONS_RE = Object.keys(BROWSER_VERSIONS_RE_MAP).reduce(function (obj, key) {
+                    obj[BROWSERS[key]]=BROWSER_VERSIONS_RE_MAP[key];
+                    return obj;
+                },{});
+
+                var ua = $window.navigator.userAgent;
+
+                var deviceInfo = {
+                    raw: {
+                        userAgent: ua,
+                        os: {},
+                        browser: {},
+                        device: {}
+                    }
+                };
+
+                deviceInfo.raw.os = Object.keys(OS).reduce(function (obj, item) {
+                    obj[OS[item]] = reTree.test(ua, OS_RE[item]);
+                    return obj;
+                }, {});
+
+                deviceInfo.raw.browser = Object.keys(BROWSERS).reduce(function (obj, item) {
+                    obj[BROWSERS[item]] = reTree.test(ua, BROWSERS_RE[item]);
+                    return obj;
+                }, {});
+
+                deviceInfo.raw.device = Object.keys(DEVICES).reduce(function (obj, item) {
+                    obj[DEVICES[item]] = reTree.test(ua, DEVICES_RE[item]);
+                    return obj;
+                }, {});
+
+                deviceInfo.raw.os_version = Object.keys(OS_VERSIONS).reduce(function (obj, item) {
+                    obj[OS_VERSIONS[item]] = reTree.test(ua, OS_VERSIONS_RE[item]);
+                    return obj;
+                }, {});
+
+                deviceInfo.os = [
+                    OS.WINDOWS,
+                    OS.IOS,
+                    OS.MAC,
+                    OS.ANDROID,
+                    OS.LINUX,
+                    OS.UNIX,
+                    OS.FIREFOX_OS,
+                    OS.CHROME_OS,
+                    OS.WINDOWS_PHONE,
+                    OS.PS4,
+                    OS.VITA
+                ].reduce(function (previousValue, currentValue) {
+                        return (previousValue === OS.UNKNOWN && deviceInfo.raw.os[currentValue]) ? currentValue : previousValue;
+                    }, OS.UNKNOWN);
+
+                deviceInfo.browser = [
+                    BROWSERS.CHROME,
+                    BROWSERS.FIREFOX,
+                    BROWSERS.SAFARI,
+                    BROWSERS.OPERA,
+                    BROWSERS.IE,
+                    BROWSERS.MS_EDGE,
+                    BROWSERS.PS4,
+                    BROWSERS.VITA
+                ].reduce(function (previousValue, currentValue) {
+                        return (previousValue === BROWSERS.UNKNOWN && deviceInfo.raw.browser[currentValue]) ? currentValue : previousValue;
+                    }, BROWSERS.UNKNOWN);
+
+                deviceInfo.device = [
+                    DEVICES.ANDROID,
+                    DEVICES.I_PAD,
+                    DEVICES.IPHONE,
+                    DEVICES.I_POD,
+                    DEVICES.BLACKBERRY,
+                    DEVICES.FIREFOX_OS,
+                    DEVICES.CHROME_BOOK,
+                    DEVICES.WINDOWS_PHONE,
+                    DEVICES.PS4,
+                    DEVICES.VITA
+                ].reduce(function (previousValue, currentValue) {
+                        return (previousValue === DEVICES.UNKNOWN && deviceInfo.raw.device[currentValue]) ? currentValue : previousValue;
+                    }, DEVICES.UNKNOWN);
+
+                deviceInfo.os_version = [
+                    OS_VERSIONS.WINDOWS_3_11,
+                    OS_VERSIONS.WINDOWS_95,
+                    OS_VERSIONS.WINDOWS_ME,
+                    OS_VERSIONS.WINDOWS_98,
+                    OS_VERSIONS.WINDOWS_CE,
+                    OS_VERSIONS.WINDOWS_2000,
+                    OS_VERSIONS.WINDOWS_XP,
+                    OS_VERSIONS.WINDOWS_SERVER_2003,
+                    OS_VERSIONS.WINDOWS_VISTA,
+                    OS_VERSIONS.WINDOWS_7,
+                    OS_VERSIONS.WINDOWS_8_1,
+                    OS_VERSIONS.WINDOWS_8,
+                    OS_VERSIONS.WINDOWS_10,
+                    OS_VERSIONS.WINDOWS_PHONE_7_5,
+                    OS_VERSIONS.WINDOWS_PHONE_10,
+                    OS_VERSIONS.WINDOWS_NT_4_0
+                ].reduce(function (previousValue, currentValue) {
+                        return (previousValue === OS_VERSIONS.UNKNOWN && deviceInfo.raw.os_version[currentValue]) ? currentValue : previousValue;
+                    }, OS_VERSIONS.UNKNOWN);
+
+                deviceInfo.browser_version = "0";
+                if (deviceInfo.browser !== BROWSERS.UNKNOWN) {
+                    var re = BROWSER_VERSIONS_RE[deviceInfo.browser];
+                    var res = reTree.exec(ua,re);
+                    if (!!res) {
+                        deviceInfo.browser_version = res[1];
+                    }
+                }
+
+                deviceInfo.isMobile = function () {
+                    return [
+                        DEVICES.ANDROID,
+                        DEVICES.I_PAD,
+                        DEVICES.IPHONE,
+                        DEVICES.I_POD,
+                        DEVICES.BLACKBERRY,
+                        DEVICES.FIREFOX_OS,
+                        DEVICES.CHROME_BOOK,
+                        DEVICES.WINDOWS_PHONE,
+                        DEVICES.VITA
+                    ].some(function (item) {
+                            return deviceInfo.device == item;
+                        });
+                };
+
+                deviceInfo.isTablet = function () {
+                    return [
+                        DEVICES.I_PAD,
+                        DEVICES.FIREFOX_OS,
+                        DEVICES.CHROME_BOOK
+                    ].some(function (item) {
+                            return deviceInfo.device == item;
+                        });
+                };
+
+                deviceInfo.isDesktop = function () {
+                    return [
+                        DEVICES.PS4,
+                        DEVICES.UNKNOWN
+                    ].some(function (item) {
+                            return deviceInfo.device == item;
+                        });
+                };
+
+                return deviceInfo;
+            }
+        ])
+        .directive('deviceDetector', ["deviceDetector", function (deviceDetector) {
+            return {
+                restrict: "A",
+                link: function (scope, elm/*, attrs*/) {
+                    elm.addClass('os-' + deviceDetector.os);
+                    elm.addClass('browser-' + deviceDetector.browser);
+                    elm.addClass('device-' + deviceDetector.device);
+                }
+            };
+        }]);
+})(angular);

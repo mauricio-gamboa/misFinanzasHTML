@@ -8,7 +8,7 @@ module.exports = function (grunt) {
           paths: ["public/styles"]
         },
         files: {
-          "public/styles/styles.css": "less/styles.less"
+          "public/styles/styles.css": "public/less/styles.less"
         }
       },
       production: {
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
           cleancss: true
         },
         files: {
-          "public/styles/styles.css": "less/styles.less"
+          "public/styles/styles.css": "public/less/styles.less"
         }
       }
     },
@@ -30,7 +30,10 @@ module.exports = function (grunt) {
         src: [
           'bower_components/jquery/dist/jquery.js',
           'bower_components/bootstrap/dist/js/bootstrap.js',
-          'bower_components/angular/angular.js'
+          'bower_components/angular/angular.js',
+          'bower_components/angular-svg-round-progressbar/build/roundProgress.js',
+          'bower_components/re-tree/re-tree.js',
+          'bower_components/ng-device-detector/ng-device-detector.js'
         ],
         dest: 'public/js/libs.js'
       }
@@ -64,7 +67,7 @@ module.exports = function (grunt) {
 
     watch: {
       styles: {
-        files: ['less/*.less'],
+        files: ['public/less/*.less'],
         tasks: ['less', 'cssmin']
       },
       scripts: {
