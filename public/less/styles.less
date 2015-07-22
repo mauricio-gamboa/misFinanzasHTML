@@ -16,6 +16,8 @@ Colors & Vars
 @gray-4: #ededed;
 @gray-5: #ecedee;
 @gray-6: #acacac;
+@gray-7: #f3f3f3;
+@gray-8: #444444;
 
 @red-1: #e60000;
 @red-2: #c70202;
@@ -29,7 +31,7 @@ Colors & Vars
 @green-3: #02c345;
 @green-4: #395a0c;
 @green-5: #2e480a;
-@green-6: #8dc63f;
+@green-6: #8dc53e;
 
 @yellow-1: #efc91a;
 @yellow-2: #dbce00;
@@ -209,9 +211,49 @@ General
   color: @text-color;
 }
 
+.font-settings-2 {
+  font-size: 17px;
+  line-height: 24px;
+}
+
 .font-settings-3 {
   font-size: 16px;
-  line-height: 24px;
+  line-height: 23px;
+}
+
+.font-settings-4 {
+  font-size: 18px;
+  line-height: 25px;
+
+  @media @small {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+.font-settings-5 {
+  font-size: 19px;
+  line-height: 31px;
+
+  @media @xs {
+    font-size: 14px;
+    line-height: 23px;
+  }
+}
+
+.font-settings-6 {
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.font-settings-7 {
+  font-size: 40px;
+  line-height: 44px;
+
+  @media @xs {
+    font-size: 26px;
+    line-height: 35px;
+  }
 }
 
 body {
@@ -315,15 +357,18 @@ h1, h2, h3, h4, h5, h6 {
 .site-title-centered {
   font-family: 'open_sanslight';
   background: url("../images/bg-line-3.png") no-repeat 0 100%;
-  font-size: 40px;
-  line-height: 44px;
   color: @text-color;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  .font-settings-7;
 }
 
 .site-title-centered {
   background-position: 50% 100%;
+
+  @media @xs {
+    text-align: center;
+  }
 }
 
 .site-subtitle {
@@ -332,6 +377,10 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   padding-bottom: @site-padding;
   margin-bottom: @site-padding;
+
+  @media @xs {
+    .font-settings-6;
+  }
 }
 
 /***************************
@@ -446,6 +495,10 @@ Nav Styles
         margin-top: 5px;
       }
 
+      .toggler-wrapper {
+        margin-top: 32px;
+      }
+
       #main-menu {
         height: 80px;
         line-height: 80px;
@@ -466,8 +519,25 @@ Nav Styles
     }
   }
 
+  #nav-mobile {
+    top: 88px;
+  }
+
   #home-header {
     margin-top: 88px;
+  }
+}
+
+.toggler {
+  background: url("../images/bg-toggler.png") no-repeat 0 0;
+  height: 20px;
+  width: 24px;
+  display: block;
+  text-indent: -9999px;
+  cursor: pointer;
+
+  &:hover {
+    background-position: 0 -20px;
   }
 }
 
@@ -493,6 +563,12 @@ Nav Styles
     transition: margin-top 0.5s ease;
     float: left;
     margin-top: 13px;
+  }
+
+  .toggler-wrapper {
+    transition: margin-top 0.5s ease;
+    float: right;
+    margin-top: 42px;
   }
 
   #main-menu {
@@ -565,6 +641,49 @@ Nav Styles
   }
 }
 
+#nav-mobile {
+  transition: top 0.5s ease;
+  position: fixed;
+  left: 0;
+  top: 111px;
+  width: 100%;
+  z-index: 20;
+  text-align: center;
+
+  ul {
+    margin: 0;
+
+    li {
+      .border-bottom(1px, @gray-7);
+
+      a {
+        color: @gray-8;
+        font-family: 'proxima_nova_semibold';
+        display: block;
+        background-color: white;
+        line-height: 55px;
+        text-transform: uppercase;
+        font-size: 17px;
+
+        &:hover {
+          color: @green-6;
+        }
+      }
+
+      &.active {
+        a {
+          background-color: @red-1;
+          color: white;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
 /***************************
 ****************************
 Home Header Styles
@@ -604,6 +723,10 @@ Home Header Styles
     bottom: 0;
     left: 50%;
     margin-left: -1700px;
+
+    @media @xs {
+      margin-left: -2180px;
+    }
   }
 }
 
@@ -616,26 +739,58 @@ Home Header Styles
     font-size: 61px;
     line-height: 63px;
     margin: 0;
+
+    @media @small {
+      font-size: 47px;
+      line-height: 59px;
+    }
+
+    @media @xs {
+      font-size: 32px;
+      line-height: 39px;
+    }
   }
 
   p {
+    .font-settings-5;
     color: white;
     margin: 0;
-    font-size: 19px;
-    line-height: 31px;
   }
 
   .hand {
     position: absolute;
     bottom: 0;
     right: 73px;
+
+    @media @medium {
+      right: -45px;
+    }
+
+    @media @small {
+      right: -150px;
+    }
+
+    @media @xs {
+      width: 304px;
+      right: 50%;
+      margin-right: -185px;
+    }
   }
 
   &.home {
     height: 770px;
 
+    @media @xs {
+      height: auto;
+    }
+
     .header-home-text {
       padding-top: 150px;
+
+      @media @xs {
+        text-align: center;
+        padding-top: 30px;
+      }
 
       h1 {
         margin-bottom: 35px;
@@ -645,6 +800,10 @@ Home Header Styles
     .links {
       margin-top: 50px;
       line-height: 54px;
+
+      @media @xs {
+        margin-top: 20px;
+      }
 
       > * {
         display: inline-block;
@@ -661,25 +820,46 @@ Home Header Styles
         height: 54px;
         line-height: 54px;
         font-size: 18px;
+
+        @media @xs {
+          width: 238px;
+        }
       }
     }
 
-    .link-1 {
-      z-index: 10;
-      position: absolute;
-      bottom: 23px;
-      right: 0;
+    &.hand-wrapper {
+      @media @xs {
+        height: 500px;
+      }
+    }
+  }
+}
+
+.home-header-bottom {
+
+  .store-links {
+    position: absolute;
+    bottom: 27px;
+    left: 0;
+
+    a {
+      margin-right: 13px;
+    }
+  }
+
+  .link-1 {
+    position: absolute;
+    bottom: 23px;
+    right: 0;
+
+    @media @small {
+      font-size: 21px;
     }
 
-    .store-links {
-      z-index: 10;
-      position: absolute;
-      bottom: 27px;
-      left: 0;
-
-      a {
-        margin-right: 13px;
-      }
+    @media @xs {
+      position: static;
+      bottom: auto;
+      right: auto;
     }
   }
 }
@@ -689,6 +869,33 @@ Home Header Styles
   overflow: hidden;
   transition: margin-top 0.5s ease;
   margin-top: 111px;
+
+  .home-header-bottom {
+    height: 130px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+    @media @xs {
+      height: 70px;
+    }
+
+    .home-header-bottom-wrapper {
+      height: 130px;
+      position: relative;
+
+      @media @xs {
+        height: 70px;
+      }
+
+      @media @xs {
+        line-height: 70px;
+        text-align: center;
+      }
+    }
+  }
 }
 
 /***************************
@@ -709,11 +916,6 @@ Features Styles
   }
 }
 
-.font-settings-2 {
-  font-size: 17px;
-  line-height: 24px;
-}
-
 .feature {
   text-align: center;
 
@@ -722,7 +924,18 @@ Features Styles
     margin: 15px 0;
     background: url("../images/bg-line-1.png") no-repeat 50% 100%;
     .font-settings-2;
-    padding-bottom: 25px;
+    min-height: 70px;
+
+    @media @medium {
+      min-height: 90px;
+      font-size: 15px;
+    }
+  }
+
+  &.margin-bottom {
+    @media @small {
+      margin-bottom: 40px;
+    }
   }
 }
 
@@ -759,21 +972,42 @@ Analyze Styles
 
 #analyze {
   background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  .site-padding-top;
 }
 
 .analyze-wrapper {
   height: 621px;
   position: relative;
 
+  @media @xs {
+    height: 470px;
+    text-align: center;
+  }
+
   .phone {
     position: absolute;
     bottom: 0;
     left: 50%;
     margin-left: -162px;
+
+    @media @xs {
+      width: 254px;
+      margin-left: -127px;
+    }
   }
 
   h3 {
     padding-top: 120px;
+
+    @media @xs {
+      padding-top: 0;
+    }
+  }
+
+  &.auto {
+    @media @xs {
+      height: auto;
+    }
   }
 }
 
@@ -793,6 +1027,10 @@ Goals Styles
 
 .goals-text {
   margin-bottom: 90px;
+
+  @media @xs {
+    margin-bottom: 0;
+  }
 
   p {
     margin: 0;
@@ -894,7 +1132,7 @@ Goals Styles
     .slider-wrapper {
       .goal-meta {
         span {
-          color: @green-6;
+          color: @green-1;
         }
       }
 
@@ -917,10 +1155,21 @@ Budget Styles
 #budgets {
   background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
   height: 690px;
+
+  @media @xs {
+    height: auto;
+    .site-padding;
+  }
 }
 
 .budgets-wrapper {
   padding-top: 80px;
+
+  @media @xs {
+    padding-top: 0;
+    margin-top: 20px;
+    padding-left: 42px;
+  }
 }
 
 .budget {
@@ -946,6 +1195,10 @@ Budget Styles
     .border-bottom(1px, @gray-4);
     text-transform: uppercase;
     padding-right: 19px;
+
+    @media @xs {
+      font-size: 11px;
+    }
 
     > span {
       font-family: 'open_sansregular';
@@ -1038,7 +1291,11 @@ Budget Styles
 }
 
 .budgets-text {
-  padding-top: 235px;
+  padding-top: 200px;
+
+  @media @xs {
+    padding-top: 0;
+  }
 }
 
 /***************************
@@ -1048,13 +1305,27 @@ Platforms Styles
 ***************************/
 
 .platforms-text {
+
+  @media @xs {
+    text-align: center;
+  }
+
   p {
     margin: 0;
   }
 
   ul {
     margin: 35px 0 0 0;
-    width: 195px;
+    width: 194px;
+
+    @media @small {
+      width: 100%;
+    }
+
+    @media @xs {
+      text-align: left;
+      margin: 35px auto;
+    }
 
     li {
       font-family: 'open_sanssemibold';
@@ -1064,6 +1335,10 @@ Platforms Styles
       margin-bottom: 14px;
       padding-bottom: 14px;
       .border-bottom(1px, @gray-2);
+
+      @media @xs {
+        padding-left: 40px;
+      }
 
       &:last-child {
         margin-bottom: 0;
@@ -1084,6 +1359,16 @@ Platforms Styles
       }
     }
   }
+
+  &.margin-bottom {
+    margin-bottom: 40px;
+  }
+}
+
+.platforms-image {
+  > img {
+    max-width: 100%;
+  }
 }
 
 /***************************
@@ -1092,13 +1377,16 @@ Options Styles
 ****************************
 ***************************/
 
-.font-settings-4 {
-  font-size: 18px;
-  line-height: 25px;
-}
-
 #options {
   background: url("../images/bg-options.png") no-repeat 50% 0;
+
+  @media @small {
+    background-position: 51% 0;
+  }
+
+  @media @xs {
+    background: none;
+  }
 }
 
 .options-text {
@@ -1106,8 +1394,27 @@ Options Styles
   height: 153px;
   padding: 25px 0;
 
+  @media @xs {
+    margin: 0 -15px;
+    padding: 20px 15px;
+    height: auto;
+    text-align: center;
+  }
+
+  &.first {
+    @media @xs {
+      background-color: @green-1;
+      margin-bottom: 9px;
+    }
+  }
+
   &.last {
     padding-top: 40px;
+
+    @media @xs {
+      background-color: @red-1;
+      padding-top: 20px;
+    }
   }
 
   h4 {
@@ -1115,12 +1422,34 @@ Options Styles
     text-transform: uppercase;
     color: white;
     .font-settings-4;
+
+    @media @xs {
+      .font-settings-3;
+      margin-bottom: 10px;
+    }
+
+    br {
+      @media @small, @xs {
+        display: none;
+      }
+    }
   }
 
   .links {
     position: absolute;
     bottom: 25px;
     left: 0;
+
+    @media @small {
+      bottom: 20px;
+    }
+
+    @media @xs {
+      text-align: center;
+      position: static;
+      bottom: auto;
+      left: auto;
+    }
 
     .my-btn {
       height: 42px;
@@ -1129,6 +1458,24 @@ Options Styles
       font-size: 14px;
       float: left;
       margin-right: 25px;
+
+      @media @medium {
+        width: 174px;
+      }
+
+      @media @small {
+        width: 160px;
+      }
+
+      @media @xs {
+        float: none;
+        display: inline-block;
+        margin: 0 0 10px 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
 
       &:last-child {
         margin-right: 0;
@@ -1151,11 +1498,22 @@ Start Styles
   text-align: center;
   padding-top: 125px;
 
+  @media @xs {
+    background: url("../images/lines-start-top.png") no-repeat 50% 0,
+    url("../images/lines-start-bottom.png") no-repeat 50% 100%,
+    url("../images/bg-start.png") no-repeat 75% 0 / cover;
+  }
+
   h3 {
     margin: 0 0 48px 0;
     color: white;
     font-size: 40px;
     line-height: 49px;
+
+    @media @xs {
+      font-size: 30px;
+      line-height: 39px;
+    }
   }
 
   .btn-1 {
@@ -1174,12 +1532,17 @@ Start Styles
 
 /***************************
 ****************************
-Footer Styled
+Footer Styles
 ****************************
 ***************************/
 
 #footer {
   text-align: center;
+}
+
+.footer-top-top {
+  padding: 30px 0;
+  .border-bottom(1px, @gray-2);
 }
 
 .footer-top {
@@ -1206,6 +1569,15 @@ Footer Styled
     span {
       color: @red-1;
     }
+
+    @media @xs {
+      background-position: 50% 0;
+      padding-top: 85px;
+      padding-right: 0;
+      line-height: 19px;
+      float: none;
+      text-align: center;
+    }
   }
 }
 
@@ -1216,8 +1588,18 @@ Footer Styled
   ul {
     margin: 0;
 
+    @media @xs {
+      display: block;
+    }
+
     li {
       margin: 0 15px;
+
+      @media @xs {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
 
       a {
         font-family: 'open_sanssemibold';
@@ -1235,4 +1617,51 @@ Footer Styled
   color: @gray-6;
   line-height: 50px;
   font-size: 11px;
+
+  @media @xs {
+    line-height: normal;
+    padding: 15px 0;
+  }
+}
+
+/***************************
+****************************
+Owl Styles
+****************************
+***************************/
+
+.owl-controls {
+  .owl-pagination {
+    .owl-page {
+      margin: 0 8px;
+
+      span {
+        .border(2px, white);
+        background-color: @gray-6;
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+        margin: 0;
+      }
+
+      &.active {
+        span {
+          .border(2px, @red-1);
+          background-color: white;
+        }
+
+        &:hover {
+          span {
+            background-color: white;
+          }
+        }
+      }
+
+      &:hover {
+        span {
+          background-color: @red-1;
+        }
+      }
+    }
+  }
 }

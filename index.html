@@ -16,24 +16,40 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h1 class="logo"><a href="">Mis Finanzas</a></h1>
-            <nav id="main-menu" class="clearfix">
-              <ul class="main-menu list-unstyled clearfix">
+            <nav id="main-menu" class="clearfix hide-xs">
+              <ul class="main-menu list-unstyled clearfix hide-s">
                 <li class="active"><a href="">inicio</a></li>
                 <li><a href="">¿Cómo funciona? </a></li>
                 <li><a href="">blog</a></li>
                 <li><a href="">iniciar sesión</a></li>
               </ul>
+              <ul class="main-menu list-unstyled clearfix show-s">
+                <li class="active"><a href="">inicio</a></li>
+                <li><a href="">iniciar sesión</a></li>
+              </ul>
               <a href="" class="my-btn btn-1">Registrate</a>
             </nav>
+            <div class="toggler-wrapper show-xs">
+              <span class="toggler collapsed" data-toggle="collapse" data-target="#nav-mobile">Toggler</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <nav id="nav-mobile" class="collapse">
+    <ul class="list-unstyled">
+      <li class="active"><a href="">inicio</a></li>
+      <li><a href="">¿Cómo funciona? </a></li>
+      <li><a href="">blog</a></li>
+      <li><a href="">iniciar sesión</a></li>
+      <li><a href="">Registrate</a></li>
+    </ul>
+  </nav>
   <header id="home-header" class="header">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
           <div class="header-wrapper home">
             <div class="header-home-text">
               <h1>Maneja tus finanzas en un solo lugar</h1>
@@ -45,20 +61,37 @@
               <div class="links clearfix">
                 <a href="" class="my-btn btn-1">registrate</a>
 
-                <p class="quotes-1"><span><span>¡Es gratis!</span></span></p>
+                <p class="quotes-1 hide-xs"><span><span>¡Es gratis!</span></span></p>
               </div>
-            </div>
-
-            <div class="store-links">
-              <a href="" class="link-store apple-store">Apple Store</a>
-              <a href="" class="link-store google-store">Google Store</a>
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-          <div class="header-wrapper home">
-            <a href="" class="my-link link-1">Conoce más acerca de Mis Finanzas</a>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+          <div class="header-wrapper home hand-wrapper">
             <img class="hand" src="public/images/hand-home.png" alt=""/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-header-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6 hide-xs">
+            <div class="home-header-bottom-wrapper">
+              <div class="store-links">
+                <a href="" class="link-store apple-store">Apple Store</a>
+                <a href="" class="link-store google-store">Google Store</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
+            <div class="home-header-bottom-wrapper hide-xs">
+              <a href="" class="my-link link-1">Conoce más acerca de Mis Finanzas</a>
+            </div>
+
+            <div class="home-header-bottom-wrapper show-xs">
+              <a href="" class="my-link link-1">Ver Video</a>
+            </div>
           </div>
         </div>
       </div>
@@ -69,9 +102,9 @@
     <img class="lines" src="public/images/lines-features.png" alt=""/>
 
     <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-          <div class="feature">
+      <div class="row hide-xs">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="feature margin-bottom">
             <img src="public/images/feature-1.png" alt=""/>
 
             <h4>Maneja fácilmente <br/>tus finanzas</h4>
@@ -80,8 +113,8 @@
               alcanzar tus metas de ahorro.</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
-          <div class="feature">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="feature margin-bottom">
             <img src="public/images/feature-2.png" alt=""/>
 
             <h4>Elige tu moneda <br/>de análisis</h4>
@@ -90,7 +123,7 @@
               Finanzas hace las conversiones por ti.</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
           <div class="feature">
             <img src="public/images/feature-3.png" alt=""/>
 
@@ -101,7 +134,7 @@
               y más a tomar mejores decisiones financieras.</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
           <div class="feature">
             <img src="public/images/feature-4.png" alt=""/>
 
@@ -109,6 +142,46 @@
 
             <p>Agrega fácilmente tus cuentas y tarjetas de otras instituciones. Podrás consolidar toda tu información y
               visualizar tu panorama financiero completo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row show-xs">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="features-carousel owl-carousel" owl-single-nav>
+            <div class="feature">
+              <img src="public/images/feature-1.png" alt=""/>
+
+              <h4>Maneja fácilmente <br/>tus finanzas</h4>
+
+              <p>Crea presupuestos y monitorea tus gastos por categoría. Podrás administrar fácilmente tus finanzas y
+                alcanzar tus metas de ahorro.</p>
+            </div>
+            <div class="feature">
+              <img src="public/images/feature-2.png" alt=""/>
+
+              <h4>Elige tu moneda <br/>de análisis</h4>
+
+              <p>Elige la moneda en la cual deseas analizar tu información financiera. Adiós a los tipos de cambio, Mis
+                Finanzas hace las conversiones por ti.</p>
+            </div>
+            <div class="feature">
+              <img src="public/images/feature-3.png" alt=""/>
+
+              <h4>Sincroniza Automáticamente tus productos BAC | Credomatic</h4>
+
+              <p>Sincroniza la información de todos tus productos BAC Credomatic. Dedicarás menos tiempo a actualizar
+                datos
+                y más a tomar mejores decisiones financieras.</p>
+            </div>
+            <div class="feature">
+              <img src="public/images/feature-4.png" alt=""/>
+
+              <h4>Obtén una visión <br/>completa de tus finanzas</h4>
+
+              <p>Agrega fácilmente tus cuentas y tarjetas de otras instituciones. Podrás consolidar toda tu información
+                y
+                visualizar tu panorama financiero completo.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -120,37 +193,37 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h3 class="site-subtitle">Mis Finanzas hace tu vida más sencilla de múltiples maneras</h3>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
           <div class="small-feature">
             <div><img src="public/images/small-feature-1.png" alt=""/></div>
             <h4>Mis <br/>Transacciones</h4>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
           <div class="small-feature">
             <div><img src="public/images/small-feature-2.png" alt=""/></div>
             <h4>Mi <br/>Calendario</h4>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
           <div class="small-feature">
             <div><img src="public/images/small-feature-3.png" alt=""/></div>
             <h4>Mi <br/>Análisis</h4>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
           <div class="small-feature">
             <div><img src="public/images/small-feature-4.png" alt=""/></div>
             <h4>Mi Flujo <br/>de Efectivo</h4>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
           <div class="small-feature">
             <div><img src="public/images/small-feature-5.png" alt=""/></div>
             <h4>Mi <br/>Presupuesto</h4>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
           <div class="small-feature">
             <div><img src="public/images/small-feature-6.png" alt=""/></div>
             <h4>Mis Metas <br/>de Ahorro</h4>
@@ -162,14 +235,16 @@
   <section id="analyze">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hide-xs">
           <div class="analyze-wrapper">
             <img class="phone" src="public/images/phone-1.png" alt=""/>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-          <div class="analyze-wrapper">
-            <h3 class="site-title-left">Analiza tus gastos <br/>e ingresos</h3>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <div class="analyze-wrapper auto">
+            <h3 class="site-title-left hide-xs">Analiza tus gastos <br/>e ingresos</h3>
+
+            <h3 class="site-title-centered show-xs">Analiza tus gastos e ingresos</h3>
 
             <p>¿En qué gastaste más este mes? ¿Alimentación? ¿Hogar? ó ¿Entretenimiento? Tus gastos se organizan de
               forma
@@ -179,12 +254,17 @@
               según tu preferencia. Será fácil tomar decisiones sobre cómo gastar o ahorrar.</p>
           </div>
         </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 show-xs">
+          <div class="analyze-wrapper">
+            <img class="phone" src="public/images/phone-1.png" alt=""/>
+          </div>
+        </div>
       </div>
     </div>
   </section>
   <section id="goals" class="site-padding-double" ng-controller="GoalsController">
     <div class="container">
-      <div class="row">
+      <div class="row hide-xs">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="goals-text">
             <h3 class="site-title-centered">Alcanza tus metas financieras</h3>
@@ -196,7 +276,7 @@
             </p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 gray-bg-right">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 gray-bg-right">
           <div class="goal" ng-class="getClass(vacationsMax, vacationsValue)">
             <div class="slider-wrapper">
               <div
@@ -228,7 +308,7 @@
             <p>Vacaciones</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 gray-bg-right">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 gray-bg-right">
           <div class="goal" ng-class="getClass(universityMax, universityValue)">
             <div class="slider-wrapper">
               <div
@@ -261,7 +341,7 @@
             <p>Matrícula Universidad</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 gray-bg-right">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 gray-bg-right">
           <div class="goal" ng-class="getClass(concertMax, concertValue)">
             <div class="slider-wrapper">
               <div
@@ -292,7 +372,7 @@
             <p>Concierto</p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
           <div class="goal" ng-class="getClass(carMax, carValue)">
             <div class="slider-wrapper">
               <div
@@ -324,12 +404,159 @@
           </div>
         </div>
       </div>
+      <div class="row show-xs">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="goals-text">
+            <h3 class="site-title-centered">Alcanza tus metas financieras</h3>
+
+            <p>¿Cuánto quieres ahorrar y para qué? ¿En cuánto tiempo quieres alcanzar tu meta?</p>
+
+            <p>Define tus metas de ahorro, podrás darles seguimiento y saber qué tanto te vas <br/>acercando a
+              cumplirlas.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="goals-slider owl-carousel" owl-single-nav>
+            <div class="goal" ng-class="getClass(vacationsMax, vacationsValue)">
+              <div class="slider-wrapper">
+                <div
+                  round-progress
+                  max="vacationsMax"
+                  current="vacationsValue"
+                  color="{{getColor(vacationsMax, vacationsValue)}}"
+                  bgcolor="#c7cbd2"
+                  radius="75"
+                  stroke="13"
+                  clockwise="false"
+                  iterations="50"
+                  animation="easeInOutQuart">
+                </div>
+                <div class="goal-meta">
+                  <div ng-hide="getClass(vacationsMax, vacationsValue) == 'green'"><img
+                    src="public/images/ico-goal-1.png"
+                    alt=""/></div>
+                  <div ng-show="getClass(vacationsMax, vacationsValue) == 'green'"><img
+                    src="public/images/ico-goal-1-color.png" alt=""/></div>
+                <span
+                  ng-hide="getClass(vacationsMax, vacationsValue) == 'green'">{{vacationsValue | currency:'$':0}}</span>
+                  <img ng-show="getClass(vacationsMax, vacationsValue) == 'green'" src="public/images/check.png"
+                       alt=""/>
+                </div>
+              </div>
+              <div class="goal-amount">
+                <h5>Meta</h5>
+                <span>{{vacationsMax | currency:'$':0}}</span>
+              </div>
+              <p>Vacaciones</p>
+            </div>
+            <div class="goal" ng-class="getClass(universityMax, universityValue)">
+              <div class="slider-wrapper">
+                <div
+                  round-progress
+                  max="universityMax"
+                  current="universityValue"
+                  color="{{getColor(universityMax, universityValue)}}"
+                  bgcolor="#c7cbd2"
+                  radius="75"
+                  stroke="13"
+                  clockwise="false"
+                  iterations="50"
+                  animation="easeInOutQuart">
+                </div>
+                <div class="goal-meta">
+                  <div ng-hide="getClass(universityMax, universityValue) == 'green'"><img
+                    src="public/images/ico-goal-2.png" alt=""/></div>
+                  <div ng-show="getClass(universityMax, universityValue) == 'green'"><img
+                    src="public/images/ico-goal-2-color.png" alt=""/></div>
+                <span
+                  ng-hide="getClass(universityMax, universityValue) == 'green'">{{universityValue | currency:'$':0}}</span>
+                  <img ng-show="getClass(universityMax, universityValue) == 'green'" src="public/images/check.png"
+                       alt=""/>
+                </div>
+              </div>
+              <div class="goal-amount">
+                <h5>Meta</h5>
+                <span>{{universityMax | currency:'$':0}}</span>
+              </div>
+              <p>Matrícula Universidad</p>
+            </div>
+            <div class="goal" ng-class="getClass(concertMax, concertValue)">
+              <div class="slider-wrapper">
+                <div
+                  round-progress
+                  max="concertMax"
+                  current="concertValue"
+                  color="{{getColor(concertMax, concertValue)}}"
+                  bgcolor="#c7cbd2"
+                  radius="75"
+                  stroke="13"
+                  clockwise="false"
+                  iterations="50"
+                  animation="easeInOutQuart">
+                </div>
+                <div class="goal-meta">
+                  <div ng-hide="getClass(concertMax, concertValue) == 'green'"><img src="public/images/ico-goal-3.png"
+                                                                                    alt=""/></div>
+                  <div ng-show="getClass(concertMax, concertValue) == 'green'"><img
+                    src="public/images/ico-goal-3-color.png" alt=""/></div>
+                  <span ng-hide="getClass(concertMax, concertValue) == 'green'">{{concertValue | currency:'$':0}}</span>
+                  <img ng-show="getClass(concertMax, concertValue) == 'green'" src="public/images/check.png" alt=""/>
+                </div>
+              </div>
+              <div class="goal-amount">
+                <h5>Meta</h5>
+                <span>{{concertMax | currency:'$':0}}</span>
+              </div>
+              <p>Concierto</p>
+            </div>
+            <div class="goal" ng-class="getClass(carMax, carValue)">
+              <div class="slider-wrapper">
+                <div
+                  round-progress
+                  max="carMax"
+                  current="carValue"
+                  color="{{getColor(carMax, carValue)}}"
+                  bgcolor="#c7cbd2"
+                  radius="75"
+                  stroke="13"
+                  clockwise="false"
+                  iterations="50"
+                  animation="easeInOutQuart">
+                </div>
+                <div class="goal-meta">
+                  <div ng-hide="getClass(carMax, carValue) == 'green'"><img src="public/images/ico-goal-4.png" alt=""/>
+                  </div>
+                  <div ng-show="getClass(carMax, carValue) == 'green'"><img src="public/images/ico-goal-4-color.png"
+                                                                            alt=""/></div>
+                  <span ng-hide="getClass(carMax, carValue) == 'green'">{{carValue | currency:'$':0}}</span>
+                  <img ng-show="getClass(carMax, carValue) == 'green'" src="public/images/check.png" alt=""/>
+                </div>
+              </div>
+              <div class="goal-amount">
+                <h5>Meta</h5>
+                <span>{{carMax | currency:'$':0}}</span>
+              </div>
+              <p>Prima Carro</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section id="budgets" ng-controller="BudgetsController">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-offset-1 col-lg-5">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-5 col-md-offset-1 col-md-5 col-lg-offset-1 col-lg-5 show-xs">
+          <div class="budgets-text">
+            <h3 class="site-title-centered">Define tus presupuestos</h3>
+
+            <p>Crea tus presupuestos de gastos por categoría. Mis Finanzas los monitorea para que siempre puedas saber
+              cómo vas con tus planes. Será sencillo tomar mejores decisiones financieras y cumplir tus metas de
+              gastos. </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-offset-1 col-lg-5">
           <div class="budgets-wrapper">
             <div class="budget">
               <img src="public/images/ico-budget-1.png" alt=""/>
@@ -370,7 +597,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-offset-1 col-lg-5">
+        <div class="col-xs-12 col-sm-offset-1 col-sm-5 col-md-offset-1 col-md-5 col-lg-offset-1 col-lg-5 hide-xs">
           <div class="budgets-text">
             <h3 class="site-title-left">Define tus <br/>presupuestos</h3>
 
@@ -385,9 +612,21 @@
   <section id="platforms" class="site-padding-double">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-          <div class="platforms-text">
+        <div class="col-xs-12 col-sm-8 show-s">
+          <div class="platforms-text margin-bottom">
             <h3 class="site-title-left">Multi-Plataforma</h3>
+
+            <p>No importa desde dónde. Podrás estar informado y en control de tus finanzas personales en cualquier
+              momento
+              y desde el dispositivo de tu preferencia.</p>
+          </div>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-xs-12 col-sm-4 col-md-5 col-lg-4">
+          <div class="platforms-text hide-s">
+            <h3 class="site-title-left hide-xs">Multi-Plataforma</h3>
+
+            <h3 class="site-title-centered show-xs">Multi-Plataforma</h3>
 
             <p>No importa desde dónde. Podrás estar informado y en control de tus finanzas personales en cualquier
               momento
@@ -408,9 +647,25 @@
               </li>
             </ul>
           </div>
+          <div class="platforms-text show-s">
+            <ul class="list-unstyled">
+              <li>
+                <div><img src="public/images/ico-platform-1.png" alt=""/></div>
+                Móvil
+              </li>
+              <li>
+                <div><img src="public/images/ico-platform-2.png" alt=""/></div>
+                Tableta
+              </li>
+              <li>
+                <div><img src="public/images/ico-platform-3.png" alt=""/></div>
+                PC &amp; Laptop
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-          <div class="plarform-image">
+        <div class="col-xs-12 col-sm-8 col-md-7 col-lg-8">
+          <div class="platforms-image">
             <img src="public/images/platforms.png" alt=""/>
           </div>
         </div>
@@ -420,8 +675,8 @@
   <section id="options">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-          <div class="options-text">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+          <div class="options-text first">
             <h4>¿Ya eres cliente de BAC Credomatic pero no <br/>tienes usuario de sucursal electrónica?</h4>
 
             <div class="links clearfix">
@@ -429,7 +684,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-offset-2 col-lg-5">
+        <div class="col-xs-12 col-sm-6 col-md-offset-1 col-md-5 col-lg-offset-2 col-lg-5">
           <div class="options-text last">
             <h4>¿No eres cliente de BAC Credomatic?</h4>
 
@@ -458,10 +713,13 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="footer-top-top show-xs">
+            <h1 class="logo small"><a href="">Bac Credomatic</a></h1>
+          </div>
           <div class="footer-top clearfix">
             <p class="cuenta">visita <span>123 cuenta</span> y Aprende más sobre finanzas personales</p>
 
-            <h1 class="logo small"><a href="">Bac Credomatic</a></h1>
+            <h1 class="logo small hide-xs"><a href="">Bac Credomatic</a></h1>
           </div>
           <div class="footer-medium">
             <ul class="list-inline">
