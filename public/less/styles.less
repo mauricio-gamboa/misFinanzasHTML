@@ -12,12 +12,24 @@ Colors & Vars
 
 @gray-1: #474d5a;
 @gray-2: #eff2f2;
+@gray-3: #f6f6f6;
+@gray-4: #ededed;
+@gray-5: #ecedee;
+@gray-6: #acacac;
 
 @red-1: #e60000;
 @red-2: #c70202;
+@red-3: #fe7404;
+@red-4: #560007;
+@red-5: #3f0005;
 
 @green-1: #8dc63f;
 @green-2: #7aaa37;
+@green-3: #02c345;
+@green-4: #395a0c;
+@green-5: #2e480a;
+
+@yellow-1: #efc91a;
 
 /***************************
 ****************************
@@ -192,6 +204,11 @@ General
   color: @text-color;
 }
 
+.font-settings-3 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
 body {
   background-color: white;
   .font-settings;
@@ -215,6 +232,14 @@ a {
     width: 213px;
     height: 70px;
     text-indent: -9999px;
+  }
+
+  &.small {
+    a {
+      background: url("../images/logo-small.png") no-repeat 0 0;
+      height: 27px;
+      width: 207px;
+    }
   }
 }
 
@@ -250,6 +275,10 @@ a {
   box-shadow: 0 0 5px -1px #000000;
 }
 
+.box-shadow-gray {
+  box-shadow: 0 0 5px -1px gray;
+}
+
 .site-padding {
   padding: @site-padding 0;
 }
@@ -275,6 +304,29 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'open_sanslight';
   line-height: normal;
   margin: 0;
+}
+
+.site-title-left,
+.site-title-centered {
+  font-family: 'open_sanslight';
+  background: url("../images/bg-line-3.png") no-repeat 0 100%;
+  font-size: 40px;
+  line-height: 44px;
+  color: @text-color;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.site-title-centered {
+  background-position: 50% 100%;
+}
+
+.site-subtitle {
+  background: url("../images/bg-line-2.png") no-repeat 50% 100%;
+  margin: 0;
+  text-align: center;
+  padding-bottom: @site-padding;
+  margin-bottom: @site-padding;
 }
 
 /***************************
@@ -303,6 +355,22 @@ Buttons & Links
 
     &:hover {
       background-color: @red-2;
+    }
+  }
+
+  &.btn-2 {
+    background-color: @green-4;
+
+    &:hover {
+      background-color: @green-5;
+    }
+  }
+
+  &.btn-3 {
+    background-color: @red-4;
+
+    &:hover {
+      background-color: @red-5;
     }
   }
 }
@@ -450,6 +518,7 @@ Home Header Styles
 ***************************/
 
 .quotes-1 {
+  color: white;
   font-family: 'KaushanScript-Regular';
   font-size: 28px;
   display: inline-block;
@@ -607,16 +676,6 @@ Small Features Styles
 ****************************
 ***************************/
 
-#small-features {
-  h3 {
-    background: url("../images/bg-line-2.png") no-repeat 50% 100%;
-    margin: 0;
-    text-align: center;
-    padding-bottom: @site-padding;
-    margin-bottom: @site-padding;
-  }
-}
-
 .small-feature {
   text-align: center;
 
@@ -658,12 +717,7 @@ Analyze Styles
   }
 
   h3 {
-    background: url("../images/bg-line-3.png") no-repeat 0 100%;
-    font-size: 40px;
-    line-height: 44px;
-    margin: 0 0 40px 0;
     padding-top: 120px;
-    padding-bottom: 40px;
   }
 }
 
@@ -673,15 +727,16 @@ Goals Styles
 ****************************
 ***************************/
 
+.gray-bg-right {
+  .border-right(1px, @gray-3);
+}
+
 #goals {
   text-align: center;
+}
 
-  h3 {
-    background: url("../images/bg-line-3.png") no-repeat 50% 100%;
-    font-size: 40px;
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-  }
+.goals-text {
+  margin-bottom: 90px;
 
   p {
     margin: 0;
@@ -690,4 +745,391 @@ Goals Styles
 
 .goal {
   text-align: center;
+  padding: @site-padding 0;
+
+  .slider-wrapper {
+    position: relative;
+    height: 150px;
+
+    .goal-meta {
+      text-align: center;
+      height: 150px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      > div {
+        height: 44px;
+        line-height: 44px;
+        margin-top: 44px;
+
+        img {
+          vertical-align: middle;
+        }
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+
+  .goal-amount {
+    background: url("../images/bg-line-3.png") no-repeat 50% 100%;
+    margin-top: 24px;
+    line-height: normal;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+
+    h5 {
+      color: @gray-1;
+      text-transform: uppercase;
+    }
+
+    span {
+      display: block;
+      font-family: 'open_sansregular';
+      color: @green-1;
+      font-size: 26px;
+    }
+  }
+
+  > p {
+    .font-settings-3;
+    margin: 0;
+  }
+
+  &.last {
+    border-right: none;
+  }
+}
+
+/***************************
+****************************
+Budget Styles
+****************************
+***************************/
+
+#budgets {
+  background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  height: 690px;
+}
+
+.budgets-wrapper {
+  padding-top: 80px;
+}
+
+.budget {
+  background-color: white;
+  .round-border(4px);
+  position: relative;
+  height: 135px;
+  .box-shadow-gray;
+  padding-left: 59px;
+  margin-bottom: 59px;
+
+  > img {
+    position: absolute;
+    top: 50%;
+    margin-top: -42px;
+    left: -42px;
+  }
+
+  h5 {
+    font-family: 'open_sanssemibold';
+    color: @gray-1;
+    line-height: 43px;
+    .border-bottom(1px, @gray-4);
+    text-transform: uppercase;
+    padding-right: 19px;
+
+    > span {
+      font-family: 'open_sansregular';
+      float: right;
+      text-transform: none;
+
+      strong {
+        font-family: 'open_sanssemibold';
+        font-weight: normal;
+      }
+    }
+  }
+
+  > div {
+    margin-top: 43px;
+    padding-right: 19px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.horizontal-slider {
+  height: 22px;
+  width: 100%;
+  .round-border(25px);
+  background-color: @gray-5;
+  position: relative;
+
+  > div {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    position: absolute;
+    height: 22px;
+    left: 0;
+  }
+
+  > span {
+    display: block;
+    height: 44px;
+    margin-top: -22px;
+    position: absolute;
+    top: 50%;
+    width: 2px;
+
+    > span {
+      font-size: 17px;
+      left: 50%;
+      margin-left: -50px;
+      position: absolute;
+      text-align: center;
+      top: -26px;
+      width: 100px;
+    }
+  }
+
+  &.red {
+    > div,
+    > span {
+      background-color: @red-3;
+
+      > span {
+        color: @red-3;
+      }
+    }
+  }
+
+  &.green {
+    > div,
+    > span {
+      background-color: @green-3;
+
+      > span {
+        color: @green-3;
+      }
+    }
+  }
+
+  &.yellow {
+    > div,
+    > span {
+      background-color: @yellow-1;
+
+      > span {
+        color: @yellow-1;
+      }
+    }
+  }
+}
+
+.budgets-text {
+  padding-top: 235px;
+}
+
+/***************************
+****************************
+Platforms Styles
+****************************
+***************************/
+
+.platforms-text {
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin: 35px 0 0 0;
+    width: 195px;
+
+    li {
+      font-family: 'open_sanssemibold';
+      font-size: 14px;
+      line-height: 24px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      .border-bottom(1px, @gray-2);
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      > div {
+        float: left;
+        height: 24px;
+        line-height: 24px;
+        margin-right: 18px;
+        width: 23px;
+
+        img {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+/***************************
+****************************
+Options Styles
+****************************
+***************************/
+
+.font-settings-4 {
+  font-size: 18px;
+  line-height: 25px;
+}
+
+#options {
+  background: url("../images/bg-options.png") no-repeat 50% 0;
+}
+
+.options-text {
+  position: relative;
+  height: 153px;
+  padding: 25px 0;
+
+  &.last {
+    padding-top: 40px;
+  }
+
+  h4 {
+    font-family: 'proxima_nova_bold';
+    text-transform: uppercase;
+    color: white;
+    .font-settings-4;
+  }
+
+  .links {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+
+    .my-btn {
+      height: 42px;
+      line-height: 42px;
+      width: 183px;
+      font-size: 14px;
+      float: left;
+      margin-right: 25px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+/***************************
+****************************
+Start Styles
+****************************
+***************************/
+
+#start {
+  background: url("../images/lines-start-top.png") no-repeat 50% 0,
+  url("../images/lines-start-bottom.png") no-repeat 50% 100%,
+  url("../images/bg-start.png") no-repeat 50% 0 / cover;
+  height: 618px;
+  text-align: center;
+  padding-top: 125px;
+
+  h3 {
+    margin: 0 0 48px 0;
+    color: white;
+    font-size: 40px;
+    line-height: 49px;
+  }
+
+  .btn-1 {
+    display: block;
+    margin: 0 auto;
+    width: 228px;
+    height: 54px;
+    line-height: 54px;
+    font-size: 18px;
+  }
+
+  .quotes-1 {
+    margin-top: 55px;
+  }
+}
+
+/***************************
+****************************
+Footer Styled
+****************************
+***************************/
+
+#footer {
+  text-align: center;
+}
+
+.footer-top {
+  padding: 15px 0;
+  .border-bottom(1px, @gray-2);
+  line-height: 69px;
+  text-align: left;
+
+  .logo {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .cuenta {
+    font-family: 'open_sanssemibold';
+    text-transform: uppercase;
+    padding-right: 85px;
+    background: url("../images/cuenta.png") no-repeat 100% 0;
+    line-height: 69px;
+    float: right;
+    margin: 0;
+    font-size: 14px;
+
+    span {
+      color: @red-1;
+    }
+  }
+}
+
+.footer-medium {
+  padding: 20px 0;
+  .border-bottom(1px, @gray-2);
+
+  ul {
+    margin: 0;
+
+    li {
+      margin:  0 15px;
+
+      a {
+        font-family: 'open_sanssemibold';
+        font-size: 13px;
+
+        &:hover {
+          color: @red-1;
+        }
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  color: @gray-6;
+  line-height: 50px;
+  font-size: 11px;
 }

@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "*",
-    "angular": "*"
+    "angular": "*",
+    "angular-svg-round-progressbar": "~0.2.10"
   }
 }
