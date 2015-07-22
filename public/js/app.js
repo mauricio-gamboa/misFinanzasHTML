@@ -53,7 +53,7 @@ myApp.controller('BudgetsController', ['$scope', function ($scope) {
   $scope.marketMax = 500;
   $scope.marketVal = $scope.marketMax * (2 / 3);
 
-  $scope.restaurantsMax = 300;
+  $scope.restaurantsMax = 125;
   $scope.restaurantsVal = $scope.restaurantsMax * (3 / 3);
 
   $scope.getStyle = function (total, value, style) {
