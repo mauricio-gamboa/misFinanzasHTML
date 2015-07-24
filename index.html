@@ -66,7 +66,7 @@
         </div>
         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
           <div class="header-wrapper home hand-wrapper">
-            <img class="hand" src="public/images/hand-home.png" alt=""/>
+            <img enter-element class="hand" src="public/images/hand-home.png" alt=""/>
           </div>
         </div>
       </div>
@@ -96,135 +96,53 @@
     </div>
     <img class="lines" src="public/images/lines-header.png" alt=""/>
   </header>
-  <section id="features" class="site-padding-double site-border-bottom">
+  <section id="features" class="site-padding-double site-border-bottom hide-xs" ng-controller="FeaturesController">
     <img class="lines" src="public/images/lines-features.png" alt=""/>
 
     <div class="container">
-      <div class="row hide-xs">
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-          <div class="feature margin-bottom">
-            <img src="public/images/feature-1.png" alt=""/>
+      <div class="row" in-view="showThem($inview)" in-view-options="{ offsetTop: 300 }">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 fade-in" ng-repeat="feature in features">
+          <div class="feature" ng-class="{marginBottom: $index < 2}">
+            <img ng-src="{{feature.image}}" alt=""/>
+            <h4>{{feature.title}}</h4>
 
-            <h4>Maneja fácilmente <br/>tus finanzas</h4>
-
-            <p>Crea presupuestos y monitorea tus gastos por categoría. Podrás administrar fácilmente tus finanzas y
-              alcanzar tus metas de ahorro.</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-          <div class="feature margin-bottom">
-            <img src="public/images/feature-2.png" alt=""/>
-
-            <h4>Elige tu moneda <br/>de análisis</h4>
-
-            <p>Elige la moneda en la cual deseas analizar tu información financiera. Adiós a los tipos de cambio, Mis
-              Finanzas hace las conversiones por ti.</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-          <div class="feature">
-            <img src="public/images/feature-3.png" alt=""/>
-
-            <h4>Sincroniza Automáticamente tus productos BAC | Credomatic</h4>
-
-            <p>Sincroniza la información de todos tus productos BAC Credomatic. Dedicarás menos tiempo a actualizar
-              datos
-              y más a tomar mejores decisiones financieras.</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-          <div class="feature">
-            <img src="public/images/feature-4.png" alt=""/>
-
-            <h4>Obtén una visión <br/>completa de tus finanzas</h4>
-
-            <p>Agrega fácilmente tus cuentas y tarjetas de otras instituciones. Podrás consolidar toda tu información y
-              visualizar tu panorama financiero completo.</p>
+            <p>{{feature.content}}</p>
           </div>
         </div>
       </div>
-      <div class="row show-xs">
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    </div>
+  </section>
+  <section id="features-mobile" class="site-padding-double site-border-bottom show-xs"
+           ng-controller="FeaturesMobileController">
+    <img class="lines" src="public/images/lines-features.png" alt=""/>
+
+    <div class="container">
+      <div class="row" in-view="showThem($inview)">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="features-carousel owl-carousel" owl-single-nav>
-            <div class="feature">
-              <img src="public/images/feature-1.png" alt=""/>
+            <div class="feature" ng-repeat="feature in features">
+              <img ng-src="{{feature.image}}" alt=""/>
+              <h4>{{feature.title}}</h4>
 
-              <h4>Maneja fácilmente <br/>tus finanzas</h4>
-
-              <p>Crea presupuestos y monitorea tus gastos por categoría. Podrás administrar fácilmente tus finanzas y
-                alcanzar tus metas de ahorro.</p>
-            </div>
-            <div class="feature">
-              <img src="public/images/feature-2.png" alt=""/>
-
-              <h4>Elige tu moneda <br/>de análisis</h4>
-
-              <p>Elige la moneda en la cual deseas analizar tu información financiera. Adiós a los tipos de cambio, Mis
-                Finanzas hace las conversiones por ti.</p>
-            </div>
-            <div class="feature">
-              <img src="public/images/feature-3.png" alt=""/>
-
-              <h4>Sincroniza Automáticamente tus productos BAC | Credomatic</h4>
-
-              <p>Sincroniza la información de todos tus productos BAC Credomatic. Dedicarás menos tiempo a actualizar
-                datos
-                y más a tomar mejores decisiones financieras.</p>
-            </div>
-            <div class="feature">
-              <img src="public/images/feature-4.png" alt=""/>
-
-              <h4>Obtén una visión <br/>completa de tus finanzas</h4>
-
-              <p>Agrega fácilmente tus cuentas y tarjetas de otras instituciones. Podrás consolidar toda tu información
-                y
-                visualizar tu panorama financiero completo.</p>
+              <p>{{feature.content}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section id="small-features" class="site-padding">
+  <section id="small-features" class="site-padding" ng-controller="FeaturesSmallController" in-view="showThem($inview)"
+           in-view-options="{ offsetTop: 200 }">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h3 class="site-subtitle">Mis Finanzas hace tu vida más sencilla de múltiples maneras</h3>
         </div>
-        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+
+        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 fade-in" ng-repeat="feature in features">
           <div class="small-feature">
-            <div><img src="public/images/small-feature-1.png" alt=""/></div>
-            <h4>Mis <br/>Transacciones</h4>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-          <div class="small-feature">
-            <div><img src="public/images/small-feature-2.png" alt=""/></div>
-            <h4>Mi <br/>Calendario</h4>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-          <div class="small-feature">
-            <div><img src="public/images/small-feature-3.png" alt=""/></div>
-            <h4>Mi <br/>Análisis</h4>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-          <div class="small-feature">
-            <div><img src="public/images/small-feature-4.png" alt=""/></div>
-            <h4>Mi Flujo <br/>de Efectivo</h4>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-          <div class="small-feature no-margin">
-            <div><img src="public/images/small-feature-5.png" alt=""/></div>
-            <h4>Mi <br/>Presupuesto</h4>
-          </div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-          <div class="small-feature no-margin">
-            <div><img src="public/images/small-feature-6.png" alt=""/></div>
-            <h4>Mis Metas <br/>de Ahorro</h4>
+            <div><img ng-src="{{feature.image}}" alt=""/></div>
+            <h4>{{feature.title}}</h4>
           </div>
         </div>
       </div>
@@ -260,7 +178,8 @@
       </div>
     </div>
   </section>
-  <section id="goals" class="site-padding-double" ng-controller="GoalsController">
+  <section id="goals" class="site-padding-double" ng-controller="GoalsController" in-view="showThem($inview)"
+           in-view-options="{ offsetTop: 500 }">
     <div class="container">
       <div class="row hide-xs">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -557,7 +476,7 @@
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-offset-1 col-lg-5">
           <div class="budgets-wrapper">
             <div class="budget">
-              <img src="public/images/transporte-{{getClass(transportationMax, transportationVal)}}.png" alt=""/>
+              <img ng-src="public/images/transporte-{{getClass(transportationMax, transportationVal)}}.png" alt=""/>
               <h5>Transporte <span>Presupuesto: <strong>{{transportationMax | currency:'$':0}}</strong></span></h5>
 
               <div>
@@ -569,7 +488,7 @@
               </div>
             </div>
             <div class="budget">
-              <img src="public/images/supermercado-{{getClass(marketMax, marketVal)}}.png" alt=""/>
+              <img ng-src="public/images/supermercado-{{getClass(marketMax, marketVal)}}.png" alt=""/>
               <h5>supermercado <span>Presupuesto: <strong>{{marketMax | currency:'$':0}}</strong></span></h5>
 
               <div>
@@ -582,7 +501,7 @@
               </div>
             </div>
             <div class="budget">
-              <img src="public/images/restaurant-{{getClass(restaurantsMax, restaurantsVal)}}.png" alt=""/>
+              <img ng-src="public/images/restaurant-{{getClass(restaurantsMax, restaurantsVal)}}.png" alt=""/>
               <h5>restaurantes <span>Presupuesto: <strong>{{restaurantsMax | currency:'$':0}}</strong></span></h5>
 
               <div>
@@ -698,6 +617,7 @@
   <section id="start">
     <img src="public/images/lines-start-top.png" alt="" class="lines top"/>
     <img src="public/images/lines-start-bottom.png" alt="" class="lines bottom"/>
+
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -744,6 +664,6 @@
   </footer>
 </div>
 <script src="public/js/libs.min.js"></script>
-<script src="public/js/app.min.js"></script>
+<script src="public/js/main.min.js"></script>
 </body>
 </html>

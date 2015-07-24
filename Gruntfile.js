@@ -32,11 +32,19 @@ module.exports = function (grunt) {
           'bower_components/OwlCarousel/owl-carousel/owl.carousel.js',
           'bower_components/bootstrap/dist/js/bootstrap.js',
           'bower_components/angular/angular.js',
+          'bower_components/angular-animate/angular-animate.js',
+          'bower_components/angular-inview/angular-inview.js',
           'bower_components/angular-svg-round-progressbar/build/roundProgress.js',
           'bower_components/re-tree/re-tree.js',
           'bower_components/ng-device-detector/ng-device-detector.js'
         ],
         dest: 'public/js/libs.js'
+      },
+      my_js: {
+        src: [
+          'public/js/angular/**/*.js'
+        ],
+        dest: 'public/js/main.js'
       }
     },
 
@@ -63,7 +71,7 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: {
-          'public/js/app.min.js': 'public/js/app.js'
+          'public/js/main.min.js': 'public/js/main.js'
         }
       }
     },
@@ -74,8 +82,8 @@ module.exports = function (grunt) {
         tasks: ['less', 'cssmin']
       },
       scripts: {
-        files: ['public/js/app.js'],
-        tasks: ['uglify:scripts']
+        files: ['public/js/angular/**/*.js'],
+        tasks: ['concat:my_js', 'uglify:scripts']
       }
     }
   });
