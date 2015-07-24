@@ -774,22 +774,27 @@ Home Header Styles
   }
 
   .hand {
+    transition: 1s linear right;
     position: absolute;
     bottom: 0;
-    right: 73px;
+    right: -500px;
 
-    @media @medium {
-      right: -45px;
-    }
+    &.on {
+      right: 73px;
 
-    @media @small {
-      right: -150px;
-    }
+      @media @medium {
+        right: -45px;
+      }
 
-    @media @xs {
-      width: 304px;
-      right: 50%;
-      margin-right: -185px;
+      @media @small {
+        right: -150px;
+      }
+
+      @media @xs {
+        width: 304px;
+        right: 50%;
+        margin-right: -185px;
+      }
     }
   }
 
@@ -882,6 +887,7 @@ Home Header Styles
 
 #home-header {
   background: url("../images/bg-header-home.jpg") no-repeat scroll 50% 0 / cover;
+  background-attachment: fixed;
   overflow: hidden;
   transition: margin-top 0.5s ease;
   margin-top: 111px;
@@ -920,9 +926,11 @@ Features Styles
 ****************************
 ***************************/
 
-#features {
+#features,
+#features-mobile {
   overflow: hidden;
   position: relative;
+  min-height: 590px;
 
   .lines {
     position: absolute;
@@ -948,7 +956,7 @@ Features Styles
     }
   }
 
-  &.margin-bottom {
+  &.marginBottom {
     @media @small {
       margin-bottom: 40px;
     }
@@ -996,6 +1004,7 @@ Analyze Styles
 
 #analyze {
   background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  background-attachment: fixed;
   .site-padding-top;
 }
 
@@ -1178,6 +1187,7 @@ Budget Styles
 
 #budgets {
   background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  background-attachment: fixed;
   height: 690px;
 
   @media @xs {
@@ -1700,5 +1710,41 @@ Owl Styles
         }
       }
     }
+  }
+}
+
+/***************************
+****************************
+Animations
+****************************
+***************************/
+
+.fade-in {
+  &.ng-move,
+  &.ng-enter,
+  &.ng-leave {
+    -webkit-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+  }
+
+  &.ng-leave.ng-leave-active,
+  &.ng-move,
+  &.ng-enter {
+    opacity: 0;
+    top: -50px;
+    height: 0;
+  }
+
+  &.ng-leave,
+  &.ng-move.ng-move-active,
+  &.ng-enter.ng-enter-active {
+    opacity: 1;
+    top: 0;
+    height: auto;
   }
 }
