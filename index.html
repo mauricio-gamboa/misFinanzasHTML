@@ -140,7 +140,7 @@
         </div>
 
         <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 fade-in" ng-repeat="feature in features">
-          <div class="small-feature">
+          <div class="small-feature" ng-class="{'noMargin': $index == 4 || $index == 5}">
             <div><img ng-src="{{feature.image}}" alt=""/></div>
             <h4>{{feature.title}}</h4>
           </div>
@@ -317,7 +317,7 @@
               <h5>Meta</h5>
               <span>{{carMax | currency:'$':0}}</span>
             </div>
-            <p>Prima Carro</p>
+            <p>Arreglo Carro</p>
           </div>
         </div>
       </div>
@@ -454,14 +454,15 @@
                 <h5>Meta</h5>
                 <span>{{carMax | currency:'$':0}}</span>
               </div>
-              <p>Prima Carro</p>
+              <p>Arreglo Carro</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section id="budgets" ng-controller="BudgetsController">
+  <section id="budgets" ng-controller="BudgetsController" in-view="showThem($inview)"
+           in-view-options="{ offsetTop: 400 }">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-offset-1 col-sm-5 col-md-offset-1 col-md-5 col-lg-offset-1 col-lg-5 show-xs">
@@ -475,7 +476,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-offset-1 col-lg-5">
           <div class="budgets-wrapper">
-            <div class="budget">
+            <div class="budget fade-in-show" ng-show="showFirst">
               <img ng-src="public/images/transporte-{{getClass(transportationMax, transportationVal)}}.png" alt=""/>
               <h5>Transporte <span>Presupuesto: <strong>{{transportationMax | currency:'$':0}}</strong></span></h5>
 
@@ -487,7 +488,8 @@
                 </div>
               </div>
             </div>
-            <div class="budget">
+
+            <div class="budget fade-in-show" ng-show="showMedium">
               <img ng-src="public/images/supermercado-{{getClass(marketMax, marketVal)}}.png" alt=""/>
               <h5>supermercado <span>Presupuesto: <strong>{{marketMax | currency:'$':0}}</strong></span></h5>
 
@@ -500,7 +502,8 @@
                 </div>
               </div>
             </div>
-            <div class="budget">
+
+            <div class="budget fade-in-show" ng-show="showLast">
               <img ng-src="public/images/restaurant-{{getClass(restaurantsMax, restaurantsVal)}}.png" alt=""/>
               <h5>restaurantes <span>Presupuesto: <strong>{{restaurantsMax | currency:'$':0}}</strong></span></h5>
 
@@ -526,7 +529,8 @@
       </div>
     </div>
   </section>
-  <section id="platforms" class="site-padding-double">
+  <section id="platforms" class="site-padding-double" ng-controller="MainController" in-view="showThem($inview)"
+           in-view-options="{ offsetTop: 300 }">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 show-s">
@@ -583,7 +587,9 @@
         </div>
         <div class="col-xs-12 col-sm-8 col-md-7 col-lg-8">
           <div class="platforms-image">
-            <img src="public/images/platforms.png" alt=""/>
+            <img class="laptop" height-parent ng-show="isShowThem" src="public/images/platforms.png" alt=""/>
+            <img class="tablet" ng-show="isShowThem" src="public/images/platforms-tablet.png" alt=""/>
+            <img class="mobile" ng-show="isShowThem" src="public/images/platforms-mobile.png" alt=""/>
           </div>
         </div>
       </div>
