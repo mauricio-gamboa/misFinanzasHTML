@@ -64,16 +64,20 @@ angular.module('misFinanzas.controllers')
     };
   }]);;'use strict';
 
-angular.module('misFinanzas.controllers').controller('BudgetsController', ['$scope', function ($scope) {
+angular.module('misFinanzas.controllers').controller('BudgetsController', ['$scope', '$interval', function ($scope, $interval) {
 
-  $scope.transportationMax = 300;
-  $scope.transportationVal = $scope.transportationMax * (1 / 3);
+  $scope.showFirst = false;
+  $scope.showMedium = false;
+  $scope.showLast = false;
 
-  $scope.marketMax = 500;
-  $scope.marketVal = $scope.marketMax * (2 / 3);
+  $scope.transportationMax = 200;
+  $scope.transportationVal = 0;
+
+  $scope.marketMax = 300;
+  $scope.marketVal = 0;
 
   $scope.restaurantsMax = 125;
-  $scope.restaurantsVal = $scope.restaurantsMax * (3 / 3);
+  $scope.restaurantsVal = 0;
 
   $scope.getStyle = function (total, value, style) {
     return style + ': ' + (value * 100) / total + '%;';
@@ -82,12 +86,44 @@ angular.module('misFinanzas.controllers').controller('BudgetsController', ['$sco
   $scope.getClass = function (total, value) {
     var percentage = (value) / total;
 
-    if (percentage <= (1 / 3))
+    if (percentage <= 0.25)
       return 'green';
-    else if (percentage <= (2 / 3))
+    else if (percentage > 0.25 && percentage < 1)
       return 'yellow';
     else
       return 'red';
+  };
+
+  $scope.showThem = function (inview) {
+    if (inview && !$scope.showFirst) {
+      $scope.showFirst = true;
+
+      $interval(function () {
+        $scope.transportationVal = $scope.transportationVal + 1;
+        if ($scope.transportationVal == ($scope.transportationMax * 0.25)) $scope.displayMedium();
+      }, 4, ($scope.transportationMax * 0.25));
+    }
+  };
+
+  $scope.displayMedium = function () {
+    if (!$scope.showMedium) {
+      $scope.showMedium = true;
+
+      $interval(function () {
+        $scope.marketVal = $scope.marketVal + 1;
+        if ($scope.marketVal == ($scope.marketMax * 0.75)) $scope.displayLast();
+      }, 4, ($scope.marketMax * 0.75));
+    }
+  };
+
+  $scope.displayLast = function () {
+    if (!$scope.showLast) {
+      $scope.showLast = true;
+
+      $interval(function () {
+        $scope.restaurantsVal = $scope.restaurantsVal + 1;
+      }, 4, ($scope.restaurantsMax));
+    }
   };
 }]);;'use strict';
 
@@ -171,7 +207,7 @@ angular.module('misFinanzas.controllers').controller('GoalsController', ['$scope
   $scope.concertMax = 300;
   $scope.concertValue = 0;
 
-  $scope.carMax = 1250;
+  $scope.carMax = 700;
   $scope.carValue = 0;
 
   $scope.getPercentage = function (total, value) {
@@ -228,6 +264,15 @@ angular.module('misFinanzas.controllers').controller('GoalsController', ['$scope
 
 }]);;'use strict';
 
+angular.module('misFinanzas.controllers').controller('MainController', ['$scope', function ($scope) {
+  $scope.isShowThem = false;
+
+  $scope.showThem = function (inView) {
+    if (!$scope.isShowThem && inView)
+      $scope.isShowThem = true;
+  };
+}]);;'use strict';
+
 angular.module('misFinanzas.directives', [])
 
   .directive('changeMenu', ['deviceDetector', '$window', '$document', function (deviceDetector, $window, $document) {
@@ -278,6 +323,23 @@ angular.module('misFinanzas.directives', [])
 
       link: function (scope, element) {
         $animate.addClass(element, 'on');
+      }
+    };
+  }])
+
+  .directive('heightParent', ['$window', function ($window) {
+    return {
+      restrict: 'A',
+
+      link: function (scope, element) {
+
+        element.parent().css('min-height', element.innerHeight() + 30);
+
+        var w = angular.element($window);
+
+        w.on('resize', function () {
+          element.parent().css('min-height', element.innerHeight() + 30);
+        });
       }
     };
   }]);;'use strict';;'use strict';

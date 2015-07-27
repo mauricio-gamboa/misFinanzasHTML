@@ -52,4 +52,21 @@ angular.module('misFinanzas.directives', [])
         $animate.addClass(element, 'on');
       }
     };
+  }])
+
+  .directive('heightParent', ['$window', function ($window) {
+    return {
+      restrict: 'A',
+
+      link: function (scope, element) {
+
+        element.parent().css('min-height', element.innerHeight() + 30);
+
+        var w = angular.element($window);
+
+        w.on('resize', function () {
+          element.parent().css('min-height', element.innerHeight() + 30);
+        });
+      }
+    };
   }]);

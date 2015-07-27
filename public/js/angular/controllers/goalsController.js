@@ -12,7 +12,7 @@ angular.module('misFinanzas.controllers').controller('GoalsController', ['$scope
   $scope.concertMax = 300;
   $scope.concertValue = 0;
 
-  $scope.carMax = 1250;
+  $scope.carMax = 700;
   $scope.carValue = 0;
 
   $scope.getPercentage = function (total, value) {

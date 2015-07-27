@@ -774,7 +774,7 @@ Home Header Styles
   }
 
   .hand {
-    transition: 1s linear right;
+    transition: 0.3s linear right;
     position: absolute;
     bottom: 0;
     right: -500px;
@@ -973,10 +973,11 @@ Small Features Styles
   text-align: center;
 
   @media @xs {
+    min-height: 124px;
     margin-bottom: 40px;
   }
 
-  &.no-margin {
+  &.noMargin {
     margin-bottom: 0;
   }
 
@@ -1339,6 +1340,10 @@ Platforms Styles
 ****************************
 ***************************/
 
+#platforms {
+  overflow: hidden;
+}
+
 .platforms-text {
 
   @media @xs {
@@ -1401,8 +1406,117 @@ Platforms Styles
 }
 
 .platforms-image {
+  position: relative;
+
   > img {
-    max-width: 100%;
+    position: absolute;
+
+    &.laptop {
+      transition: 0.33s linear left;
+      max-width: 100%;
+      top: 0;
+      left: 0;
+
+      &.ng-hide-remove {
+        left: 1000px;
+      }
+
+      &.ng-hide-add {
+        left: 0;
+      }
+    }
+
+    &.tablet {
+      transition: 0.66s linear right;
+      right: 81px;
+      top: 47px;
+
+      &.ng-hide-remove {
+        right: 2000px;
+      }
+
+      &.ng-hide-add {
+        right: 81px;
+      }
+
+      @media @medium {
+        right: 0;
+        top: 38px;
+        width: 254px;
+
+        &.ng-hide-add {
+          right: 0;
+        }
+      }
+
+      @media @small {
+        right: 0;
+        top: 33px;
+        width: 223px;
+
+        &.ng-hide-add {
+          right: 0;
+        }
+      }
+
+      @media @xs {
+        right: 0;
+        top: 7%;
+        width: 48%;
+
+        &.ng-hide-add {
+          right: 0;
+        }
+      }
+    }
+
+    &.mobile {
+      transition: 1s linear left;
+      left: 146px;
+      top: 158px;
+
+      &.ng-hide-remove {
+        left: 1000px;
+      }
+
+      &.ng-hide-add {
+        left: 146px;
+      }
+
+      @media @medium {
+        left: 117px;
+        top: 126px;
+        width: 104px;
+
+        &.ng-hide-add {
+          left: 117px;
+        }
+      }
+
+      @media @small {
+        left: 102px;
+        top: 108px;
+        width: 93px;
+
+        &.ng-hide-add {
+          left: 102px;
+        }
+      }
+
+      @media @xs {
+        left: 20%;
+        top: 30%;
+        width: 24%;
+
+        &.ng-hide-add {
+          left: 20%;
+        }
+      }
+
+      &.ng-show {
+
+      }
+    }
   }
 }
 
@@ -1746,5 +1860,21 @@ Animations
     opacity: 1;
     top: 0;
     height: auto;
+  }
+}
+
+.fade-in-show {
+  -webkit-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -moz-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -ms-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -o-transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  transition: 800ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+
+  &.ng-hide {
+    opacity: 0;
+  }
+
+  &.ng-show {
+    opacity: 1;
   }
 }

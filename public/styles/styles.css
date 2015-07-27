@@ -596,7 +596,7 @@ Home Header Styles
   }
 }
 .header-wrapper .hand {
-  transition: 1s linear right;
+  transition: 0.3s linear right;
   position: absolute;
   bottom: 0;
   right: -500px;
@@ -784,10 +784,11 @@ Small Features Styles
 }
 @media (max-width: 767px) {
   .small-feature {
+    min-height: 124px;
     margin-bottom: 40px;
   }
 }
-.small-feature.no-margin {
+.small-feature.noMargin {
   margin-bottom: 0;
 }
 .small-feature > div {
@@ -1076,6 +1077,9 @@ Budget Styles
 Platforms Styles
 ****************************
 ***************************/
+#platforms {
+  overflow: hidden;
+}
 @media (max-width: 767px) {
   .platforms-text {
     text-align: center;
@@ -1131,8 +1135,105 @@ Platforms Styles
 .platforms-text.margin-bottom {
   margin-bottom: 40px;
 }
+.platforms-image {
+  position: relative;
+}
 .platforms-image > img {
+  position: absolute;
+}
+.platforms-image > img.laptop {
+  transition: 0.33s linear left;
   max-width: 100%;
+  top: 0;
+  left: 0;
+}
+.platforms-image > img.laptop.ng-hide-remove {
+  left: 1000px;
+}
+.platforms-image > img.laptop.ng-hide-add {
+  left: 0;
+}
+.platforms-image > img.tablet {
+  transition: 0.66s linear right;
+  right: 81px;
+  top: 47px;
+}
+.platforms-image > img.tablet.ng-hide-remove {
+  right: 2000px;
+}
+.platforms-image > img.tablet.ng-hide-add {
+  right: 81px;
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  .platforms-image > img.tablet {
+    right: 0;
+    top: 38px;
+    width: 254px;
+  }
+  .platforms-image > img.tablet.ng-hide-add {
+    right: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .platforms-image > img.tablet {
+    right: 0;
+    top: 33px;
+    width: 223px;
+  }
+  .platforms-image > img.tablet.ng-hide-add {
+    right: 0;
+  }
+}
+@media (max-width: 767px) {
+  .platforms-image > img.tablet {
+    right: 0;
+    top: 7%;
+    width: 48%;
+  }
+  .platforms-image > img.tablet.ng-hide-add {
+    right: 0;
+  }
+}
+.platforms-image > img.mobile {
+  transition: 1s linear left;
+  left: 146px;
+  top: 158px;
+}
+.platforms-image > img.mobile.ng-hide-remove {
+  left: 1000px;
+}
+.platforms-image > img.mobile.ng-hide-add {
+  left: 146px;
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  .platforms-image > img.mobile {
+    left: 117px;
+    top: 126px;
+    width: 104px;
+  }
+  .platforms-image > img.mobile.ng-hide-add {
+    left: 117px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .platforms-image > img.mobile {
+    left: 102px;
+    top: 108px;
+    width: 93px;
+  }
+  .platforms-image > img.mobile.ng-hide-add {
+    left: 102px;
+  }
+}
+@media (max-width: 767px) {
+  .platforms-image > img.mobile {
+    left: 20%;
+    top: 30%;
+    width: 24%;
+  }
+  .platforms-image > img.mobile.ng-hide-add {
+    left: 20%;
+  }
 }
 /***************************
 ****************************
@@ -1446,4 +1547,17 @@ Animations
   opacity: 1;
   top: 0;
   height: auto;
+}
+.fade-in-show {
+  -webkit-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+}
+.fade-in-show.ng-hide {
+  opacity: 0;
+}
+.fade-in-show.ng-show {
+  opacity: 1;
 }
