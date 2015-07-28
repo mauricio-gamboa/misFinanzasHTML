@@ -600,30 +600,34 @@ Home Header Styles
   }
 }
 .header-wrapper .hand {
-  transition: 0.3s linear right;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  transform: translate3d(20px, 0px, 0px);
   position: absolute;
   bottom: 0;
-  right: -500px;
-}
-.header-wrapper .hand.on {
-  right: 73px;
 }
 @media (min-width: 993px) and (max-width: 1200px) {
-  .header-wrapper .hand.on {
+  .header-wrapper .hand {
     right: -45px;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
-  .header-wrapper .hand.on {
+  .header-wrapper .hand {
     right: -150px;
   }
 }
 @media (max-width: 767px) {
-  .header-wrapper .hand.on {
+  .header-wrapper .hand {
     width: 304px;
     right: 50%;
     margin-right: -185px;
   }
+}
+.header-wrapper .hand.on {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
 }
 .header-wrapper.home {
   height: 770px;
@@ -1143,15 +1147,18 @@ Platforms Styles
   position: relative;
 }
 .platforms-image > img {
-  position: absolute;
   transition-property: opacity, transform;
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  transform: translate3d(20px, 0px, 0px);
   opacity: 1;
   transform: translate3d(0px, 0px, 0px);
+  position: absolute;
 }
 .platforms-image > img.ng-hide-remove {
   opacity: 0;
-  transform: translate3d(-20px, 0px, 0px);
+  transform: translate3d(20px, 0px, 0px);
 }
 .platforms-image > img.ng-hide-add {
   opacity: 1;
@@ -1538,6 +1545,21 @@ Modal Styles
 Animations
 ****************************
 ***************************/
+.animate3d {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  transform: translate3d(20px, 0px, 0px);
+}
+.animate3dShow {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+}
+.animate3dHide {
+  opacity: 0;
+  transform: translate3d(20px, 0px, 0px);
+}
 .fade-in.ng-move,
 .fade-in.ng-enter,
 .fade-in.ng-leave {

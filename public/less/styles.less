@@ -778,27 +778,26 @@ Home Header Styles
   }
 
   .hand {
-    transition: 0.3s linear right;
+    .animate3d;
     position: absolute;
     bottom: 0;
-    right: -500px;
+
+    @media @medium {
+      right: -45px;
+    }
+
+    @media @small {
+      right: -150px;
+    }
+
+    @media @xs {
+      width: 304px;
+      right: 50%;
+      margin-right: -185px;
+    }
 
     &.on {
-      right: 73px;
-
-      @media @medium {
-        right: -45px;
-      }
-
-      @media @small {
-        right: -150px;
-      }
-
-      @media @xs {
-        width: 304px;
-        right: 50%;
-        margin-right: -185px;
-      }
+      .animate3dShow;
     }
   }
 
@@ -1413,20 +1412,16 @@ Platforms Styles
   position: relative;
 
   > img {
+    .animate3d;
+    .animate3dShow;
     position: absolute;
-    transition-property: opacity, transform;
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
-    opacity: 1;
-    transform: translate3d(0px, 0px, 0px);
 
     &.ng-hide-remove {
-      opacity: 0;
-      transform: translate3d(-20px, 0px, 0px);
+      .animate3dHide;
     }
 
     &.ng-hide-add {
-      opacity: 1;
-      transform: translate3d(0px, 0px, 0px);
+      .animate3dShow;
     }
 
     &.laptop {
@@ -1843,6 +1838,24 @@ Modal Styles
 Animations
 ****************************
 ***************************/
+
+.animate3d {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  transform: translate3d(20px, 0px, 0px);
+}
+
+.animate3dShow {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.animate3dHide {
+  opacity: 0;
+  transform: translate3d(20px, 0px, 0px);
+}
 
 .fade-in {
   &.ng-move,
