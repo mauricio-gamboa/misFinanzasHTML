@@ -106,40 +106,37 @@ angular.module('misFinanzas.directives', [])
       restrict: 'A',
 
       link: function (scope, element) {
-        var distance = element.offset().top - 400;
-        var $phone = element.find('.phone');
-        var windowElement = angular.element($window);
-        var bodyElement = angular.element($document[0].body);
-        var $html = $('html');
-        var $use = ((deviceDetector.browser == 'firefox' || deviceDetector.browser == 'ie') ? $html : bodyElement);
-        var top = 100;
-        var y = top;
+        if (deviceDetector.browser != 'safari') {
+          var distance = element.offset().top - 400;
+          var $phone = element.find('.phone');
+          var windowElement = angular.element($window);
+          var bodyElement = angular.element($document[0].body);
+          var $html = $('html');
+          var $use = ((deviceDetector.browser == 'firefox' || deviceDetector.browser == 'ie') ? $html : bodyElement);
+          var top = 100;
+          var y = top;
+          var lastScrollTop = 0;
 
-        $phone.css('transform', 'translateY(' + y + 'px)');
+          $phone.css('transform', 'translate3d(0px, ' + y + 'px, 0px)');
 
-        var lastScrollTop = 0;
+          windowElement.on('scroll', function () {
+            if ($use) {
+              if ($use.scrollTop() >= distance) {
+                var st = $(this).scrollTop();
 
-        windowElement.on('scroll', function () {
-          if ($use) {
-            if ($use.scrollTop() >= distance) {
-              var st = $(this).scrollTop();
-
-              if (st > lastScrollTop) {
-                if (y > 0) {
-                  y--;
-                  $phone.css('transform', 'translateY(' + y + 'px)');
+                if (st > lastScrollTop) {
+                  if (y > 0) y--;
+                } else {
+                  if (y < top) y++;
                 }
-              } else {
-                if (y < top) {
-                  y++;
-                  $phone.css('transform', 'translateY(' + y + 'px)');
-                }
+
+                $phone.css('transform', 'translate3d(0px, ' + y + 'px, 0px)');
+
+                lastScrollTop = st;
               }
-
-              lastScrollTop = st;
             }
-          }
-        });
+          });
+        }
       }
     };
   }]);
