@@ -291,6 +291,8 @@ Buttons & Links
   line-height: normal;
   text-align: center;
   box-shadow: 0 1px 2px -1px #000000;
+  border: none;
+  padding: 0;
 }
 .my-btn:hover,
 .my-btn:visited,
@@ -319,6 +321,8 @@ Buttons & Links
 .my-link {
   color: white;
   font-family: 'ProximaNova-Light';
+  border: none;
+  padding: 0;
 }
 .my-link:hover,
 .my-link:visited,
@@ -596,30 +600,38 @@ Home Header Styles
   }
 }
 .header-wrapper .hand {
-  transition: 0.3s linear right;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  -webkit-transform: translate3d(20px, 0px, 0px);
+  transform: translate3d(20px, 0px, 0px);
+  -webkit-transform: translate3d(100px, 0px, 0px);
+  transform: translate3d(100px, 0px, 0px);
   position: absolute;
   bottom: 0;
-  right: -500px;
-}
-.header-wrapper .hand.on {
-  right: 73px;
 }
 @media (min-width: 993px) and (max-width: 1200px) {
-  .header-wrapper .hand.on {
+  .header-wrapper .hand {
     right: -45px;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
-  .header-wrapper .hand.on {
+  .header-wrapper .hand {
     right: -150px;
   }
 }
 @media (max-width: 767px) {
-  .header-wrapper .hand.on {
+  .header-wrapper .hand {
     width: 304px;
     right: 50%;
     margin-right: -185px;
   }
+}
+.header-wrapper .hand.on {
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
 }
 .header-wrapper.home {
   height: 770px;
@@ -809,7 +821,7 @@ Analyze Styles
 ****************************
 ***************************/
 #analyze {
-  background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  background: url("../images/bg-figures.jpg") repeat scroll 50% 0;
   background-attachment: fixed;
   padding-top: 45px;
 }
@@ -944,7 +956,7 @@ Budget Styles
 ****************************
 ***************************/
 #budgets {
-  background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  background: url("../images/bg-figures.jpg") repeat scroll 50% 0;
   background-attachment: fixed;
   height: 690px;
 }
@@ -965,13 +977,39 @@ Budget Styles
   }
 }
 .budget {
-  background-color: white;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  -webkit-transform: translate3d(-20px, 0px, 0px);
+  transform: translate3d(-20px, 0px, 0px);
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
   border-radius: 4px;
+  box-shadow: 0 0 5px -1px gray;
+  transition-duration: 300ms;
+  background-color: white;
   position: relative;
   height: 135px;
-  box-shadow: 0 0 5px -1px gray;
   padding-left: 59px;
   margin-bottom: 59px;
+}
+.budget.ng-hide-remove {
+  opacity: 0;
+  -webkit-transform: translate3d(-20px, 0px, 0px);
+  transform: translate3d(-20px, 0px, 0px);
+}
+.budget.ng-hide-add {
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
+.budget:nth-child(2) {
+  transition-duration: 600ms;
+}
+.budget:last-child {
+  transition-duration: 900ms;
 }
 .budget > img {
   position: absolute;
@@ -1139,39 +1177,43 @@ Platforms Styles
   position: relative;
 }
 .platforms-image > img {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  -webkit-transform: translate3d(20px, 0px, 0px);
+  transform: translate3d(20px, 0px, 0px);
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
   position: absolute;
 }
+.platforms-image > img.ng-hide-remove {
+  opacity: 0;
+  -webkit-transform: translate3d(20px, 0px, 0px);
+  transform: translate3d(20px, 0px, 0px);
+}
+.platforms-image > img.ng-hide-add {
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
 .platforms-image > img.laptop {
-  transition: 0.33s linear left;
-  max-width: 100%;
+  transition-duration: 300ms;
   top: 0;
   left: 0;
-}
-.platforms-image > img.laptop.ng-hide-remove {
-  left: 1000px;
-}
-.platforms-image > img.laptop.ng-hide-add {
-  left: 0;
+  max-width: 100%;
 }
 .platforms-image > img.tablet {
-  transition: 0.66s linear right;
+  transition-duration: 600ms;
   right: 81px;
   top: 47px;
-}
-.platforms-image > img.tablet.ng-hide-remove {
-  right: 2000px;
-}
-.platforms-image > img.tablet.ng-hide-add {
-  right: 81px;
 }
 @media (min-width: 993px) and (max-width: 1200px) {
   .platforms-image > img.tablet {
     right: 0;
     top: 38px;
     width: 254px;
-  }
-  .platforms-image > img.tablet.ng-hide-add {
-    right: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -1180,9 +1222,6 @@ Platforms Styles
     top: 33px;
     width: 223px;
   }
-  .platforms-image > img.tablet.ng-hide-add {
-    right: 0;
-  }
 }
 @media (max-width: 767px) {
   .platforms-image > img.tablet {
@@ -1190,29 +1229,17 @@ Platforms Styles
     top: 7%;
     width: 48%;
   }
-  .platforms-image > img.tablet.ng-hide-add {
-    right: 0;
-  }
 }
 .platforms-image > img.mobile {
-  transition: 1s linear left;
+  transition-duration: 900ms;
   left: 146px;
   top: 158px;
-}
-.platforms-image > img.mobile.ng-hide-remove {
-  left: 1000px;
-}
-.platforms-image > img.mobile.ng-hide-add {
-  left: 146px;
 }
 @media (min-width: 993px) and (max-width: 1200px) {
   .platforms-image > img.mobile {
     left: 117px;
     top: 126px;
     width: 104px;
-  }
-  .platforms-image > img.mobile.ng-hide-add {
-    left: 117px;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -1221,18 +1248,12 @@ Platforms Styles
     top: 108px;
     width: 93px;
   }
-  .platforms-image > img.mobile.ng-hide-add {
-    left: 102px;
-  }
 }
 @media (max-width: 767px) {
   .platforms-image > img.mobile {
     left: 20%;
     top: 30%;
     width: 24%;
-  }
-  .platforms-image > img.mobile.ng-hide-add {
-    left: 20%;
   }
 }
 /***************************
@@ -1520,9 +1541,80 @@ Owl Styles
 }
 /***************************
 ****************************
+Modal Styles
+****************************
+***************************/
+.modal-backdrop.in {
+  opacity: 0.8;
+}
+#video-modal .modal-content {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+#video-modal .modal-content .store-links {
+  margin-top: 32px;
+  text-align: center;
+}
+#video-modal .modal-content .store-links a {
+  margin: 0 7px;
+}
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/***************************
+****************************
 Animations
 ****************************
 ***************************/
+.animate3d {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  -webkit-transform: translate3d(20px, 0px, 0px);
+  transform: translate3d(20px, 0px, 0px);
+}
+.animate3dShow {
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
+.animate3dHide {
+  opacity: 0;
+  -webkit-transform: translate3d(20px, 0px, 0px);
+  transform: translate3d(20px, 0px, 0px);
+}
+.animate3dLeft {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 700ms;
+  opacity: 0;
+  -webkit-transform: translate3d(-20px, 0px, 0px);
+  transform: translate3d(-20px, 0px, 0px);
+}
+.animate3dShowLeft {
+  opacity: 1;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
+.animate3dHideLeft {
+  opacity: 0;
+  -webkit-transform: translate3d(-20px, 0px, 0px);
+  transform: translate3d(-20px, 0px, 0px);
+}
 .fade-in.ng-move,
 .fade-in.ng-enter,
 .fade-in.ng-leave {
@@ -1547,17 +1639,4 @@ Animations
   opacity: 1;
   top: 0;
   height: auto;
-}
-.fade-in-show {
-  -webkit-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-  -moz-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-  -ms-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-  -o-transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-  transition: 800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
-}
-.fade-in-show.ng-hide {
-  opacity: 0;
-}
-.fade-in-show.ng-show {
-  opacity: 1;
 }

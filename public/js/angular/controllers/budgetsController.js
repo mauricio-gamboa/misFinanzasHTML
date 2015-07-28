@@ -2,9 +2,7 @@
 
 angular.module('misFinanzas.controllers').controller('BudgetsController', ['$scope', '$interval', function ($scope, $interval) {
 
-  $scope.showFirst = false;
-  $scope.showMedium = false;
-  $scope.showLast = false;
+  $scope.isShowThem = false;
 
   $scope.transportationMax = 200;
   $scope.transportationVal = 0;
@@ -31,34 +29,20 @@ angular.module('misFinanzas.controllers').controller('BudgetsController', ['$sco
   };
 
   $scope.showThem = function (inview) {
-    if (inview && !$scope.showFirst) {
-      $scope.showFirst = true;
+    if (inview && !$scope.isShowThem) {
+      $scope.isShowThem = true;
 
       $interval(function () {
         $scope.transportationVal = $scope.transportationVal + 1;
-        if ($scope.transportationVal == ($scope.transportationMax * 0.25)) $scope.displayMedium();
-      }, 4, ($scope.transportationMax * 0.25));
-    }
-  };
-
-  $scope.displayMedium = function () {
-    if (!$scope.showMedium) {
-      $scope.showMedium = true;
+      }, 100, ($scope.transportationMax * 0.25));
 
       $interval(function () {
         $scope.marketVal = $scope.marketVal + 1;
-        if ($scope.marketVal == ($scope.marketMax * 0.75)) $scope.displayLast();
       }, 4, ($scope.marketMax * 0.75));
-    }
-  };
-
-  $scope.displayLast = function () {
-    if (!$scope.showLast) {
-      $scope.showLast = true;
 
       $interval(function () {
         $scope.restaurantsVal = $scope.restaurantsVal + 1;
-      }, 4, ($scope.restaurantsMax));
+      }, 30, ($scope.restaurantsMax));
     }
   };
 }]);
