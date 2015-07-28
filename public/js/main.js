@@ -356,4 +356,47 @@ angular.module('misFinanzas.directives', [])
         });
       }
     };
+  }])
+
+  .directive('scrollAnimate', ['deviceDetector', '$window', '$document', function (deviceDetector, $window, $document) {
+    return {
+      restrict: 'A',
+
+      link: function (scope, element) {
+        var distance = element.offset().top - 400;
+        var $phone = element.find('.phone');
+        var windowElement = angular.element($window);
+        var bodyElement = angular.element($document[0].body);
+        var $html = $('html');
+        var $use = ((deviceDetector.browser == 'firefox' || deviceDetector.browser == 'ie') ? $html : bodyElement);
+        var top = 100;
+        var y = top;
+
+        $phone.css('transform', 'translateY(' + y + 'px)');
+
+        var lastScrollTop = 0;
+
+        windowElement.on('scroll', function () {
+          if ($use) {
+            if ($use.scrollTop() >= distance) {
+              var st = $(this).scrollTop();
+
+              if (st > lastScrollTop) {
+                if (y > 0) {
+                  y--;
+                  $phone.css('transform', 'translateY(' + y + 'px)');
+                }
+              } else {
+                if (y < top) {
+                  y++;
+                  $phone.css('transform', 'translateY(' + y + 'px)');
+                }
+              }
+
+              lastScrollTop = st;
+            }
+          }
+        });
+      }
+    };
   }]);;'use strict';;'use strict';

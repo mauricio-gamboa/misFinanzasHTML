@@ -824,6 +824,7 @@ Analyze Styles
   background: url("../images/bg-figures.jpg") repeat scroll 50% 0;
   background-attachment: fixed;
   padding-top: 45px;
+  overflow: hidden;
 }
 .analyze-wrapper {
   height: 621px;
@@ -836,6 +837,9 @@ Analyze Styles
   }
 }
 .analyze-wrapper .phone {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  transition-duration: 300ms;
   position: absolute;
   bottom: 0;
   left: 50%;
