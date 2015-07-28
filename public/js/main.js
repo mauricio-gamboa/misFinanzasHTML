@@ -106,7 +106,7 @@ angular.module('misFinanzas.controllers').controller('BudgetsController', ['$sco
 
       $interval(function () {
         $scope.restaurantsVal = $scope.restaurantsVal + 1;
-      }, 10, ($scope.restaurantsMax));
+      }, 30, ($scope.restaurantsMax));
     }
   };
 }]);;'use strict';
