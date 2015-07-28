@@ -478,7 +478,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-offset-1 col-lg-5">
           <div class="budgets-wrapper">
-            <div class="budget fade-in-show" ng-show="showFirst">
+            <div class="budget left" ng-show="isShowThem">
               <img ng-src="public/images/transporte-{{getClass(transportationMax, transportationVal)}}.png" alt=""/>
               <h5>Transporte <span>Presupuesto: <strong>{{transportationMax | currency:'$':0}}</strong></span></h5>
 
@@ -491,7 +491,7 @@
               </div>
             </div>
 
-            <div class="budget fade-in-show" ng-show="showMedium">
+            <div class="budget left" ng-show="isShowThem">
               <img ng-src="public/images/supermercado-{{getClass(marketMax, marketVal)}}.png" alt=""/>
               <h5>supermercado <span>Presupuesto: <strong>{{marketMax | currency:'$':0}}</strong></span></h5>
 
@@ -505,7 +505,7 @@
               </div>
             </div>
 
-            <div class="budget fade-in-show" ng-show="showLast">
+            <div class="budget left" ng-show="isShowThem">
               <img ng-src="public/images/restaurant-{{getClass(restaurantsMax, restaurantsVal)}}.png" alt=""/>
               <h5>restaurantes <span>Presupuesto: <strong>{{restaurantsMax | currency:'$':0}}</strong></span></h5>
 
