@@ -813,7 +813,7 @@ Analyze Styles
 ****************************
 ***************************/
 #analyze {
-  background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  background: url("../images/bg-figures.jpg") repeat scroll 50% 0;
   background-attachment: fixed;
   padding-top: 45px;
 }
@@ -948,7 +948,7 @@ Budget Styles
 ****************************
 ***************************/
 #budgets {
-  background: url("../images/bg-figures.jpg") no-repeat scroll 50% 0 / cover;
+  background: url("../images/bg-figures.jpg") repeat scroll 50% 0;
   background-attachment: fixed;
   height: 690px;
 }
