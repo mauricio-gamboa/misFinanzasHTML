@@ -69,4 +69,34 @@ angular.module('misFinanzas.directives', [])
         });
       }
     };
+  }])
+
+  .directive('heightParent', ['$window', function ($window) {
+    return {
+      restrict: 'A',
+
+      link: function (scope, element) {
+
+        element.parent().css('min-height', element.innerHeight() + 30);
+
+        var w = angular.element($window);
+
+        w.on('resize', function () {
+          element.parent().css('min-height', element.innerHeight() + 30);
+        });
+      }
+    };
+  }])
+
+  .directive('stopVideo', [function () {
+    return {
+      restrict: 'A',
+
+      link: function (scope, element) {
+        element.on('hidden.bs.modal', function () {
+          var $iframe = element.find('iframe');
+          $iframe.attr('src', $iframe.attr('src'));
+        });
+      }
+    };
   }]);
