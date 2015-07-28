@@ -1449,7 +1449,22 @@ Platforms Styles
       transition-duration: 300ms;
       top: 0;
       left: 0;
-      max-width: 100%;
+
+      @media @medium {
+        left: auto;
+        right: 105px;
+      }
+
+      @media @small {
+        width: 434px;
+        left: -45px;
+      }
+
+      @media @xs {
+        width: 257px;
+        left: 50%;
+        margin-left: -152px;
+      }
     }
 
     &.tablet {
@@ -1459,20 +1474,21 @@ Platforms Styles
 
       @media @medium {
         right: 0;
-        top: 38px;
-        width: 254px;
+        top: 47px;
       }
 
       @media @small {
         right: 0;
-        top: 33px;
-        width: 223px;
+        top: 37px;
+        width: 244px;
       }
 
       @media @xs {
-        right: 0;
-        top: 7%;
-        width: 48%;
+        left: 50%;
+        right: auto;
+        top: 22px;
+        width: 144px;
+        margin-left: 9px;
       }
     }
 
@@ -1482,21 +1498,21 @@ Platforms Styles
       top: 158px;
 
       @media @medium {
-        left: 117px;
-        top: 126px;
-        width: 104px;
+        left: 94px;
+        top: 158px;
       }
 
       @media @small {
-        left: 102px;
-        top: 108px;
-        width: 93px;
+        left: 67px;
+        top: 121px;
+        width: 100px;
       }
 
       @media @xs {
-        left: 20%;
-        top: 30%;
-        width: 24%;
+        left: 50%;
+        top: 73px;
+        width: 58px;
+        margin-left: -85px;
       }
     }
   }
