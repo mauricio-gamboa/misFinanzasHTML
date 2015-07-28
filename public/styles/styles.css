@@ -291,6 +291,8 @@ Buttons & Links
   line-height: normal;
   text-align: center;
   box-shadow: 0 1px 2px -1px #000000;
+  border: none;
+  padding: 0;
 }
 .my-btn:hover,
 .my-btn:visited,
@@ -319,6 +321,8 @@ Buttons & Links
 .my-link {
   color: white;
   font-family: 'ProximaNova-Light';
+  border: none;
+  padding: 0;
 }
 .my-link:hover,
 .my-link:visited,
@@ -1517,6 +1521,41 @@ Owl Styles
 }
 .owl-controls .owl-pagination .owl-page:hover span {
   background-color: #e60000;
+}
+/***************************
+****************************
+Modal Styles
+****************************
+***************************/
+.modal-backdrop.in {
+  opacity: 0.8;
+}
+#video-modal .modal-content {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+#video-modal .modal-content .store-links {
+  margin-top: 32px;
+  text-align: center;
+}
+#video-modal .modal-content .store-links a {
+  margin: 0 7px;
+}
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 /***************************
 ****************************

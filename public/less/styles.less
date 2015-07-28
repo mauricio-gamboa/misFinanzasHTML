@@ -409,6 +409,8 @@ Buttons & Links
   line-height: normal;
   text-align: center;
   box-shadow: 0 1px 2px -1px #000000;
+  border: none;
+  padding: 0;
 
   &:hover,
   &:visited,
@@ -445,6 +447,8 @@ Buttons & Links
 .my-link {
   color: white;
   font-family: 'ProximaNova-Light';
+  border: none;
+  padding: 0;
 
   &:hover,
   &:visited,
@@ -1824,6 +1828,51 @@ Owl Styles
         }
       }
     }
+  }
+}
+
+/***************************
+****************************
+Modal Styles
+****************************
+***************************/
+
+.modal-backdrop {
+  &.in {
+    opacity: 0.8;
+  }
+}
+
+#video-modal {
+  .modal-content {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    .store-links {
+      margin-top: 32px;
+      text-align: center;
+
+      a {
+        margin: 0 7px;
+      }
+    }
+  }
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 
