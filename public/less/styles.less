@@ -1445,24 +1445,6 @@ Platforms Styles
       .animate3dShow;
     }
 
-    &.alo {
-      top: 0;
-      left: 0;
-
-      @media @medium, @small {
-        left: auto;
-        right: 0;
-      }
-
-      @media @small {
-        width: 515px;
-      }
-
-      @media @xs {
-        width: 305px;
-      }
-    }
-
     &.laptop {
       transition-duration: 300ms;
       top: 0;
@@ -1480,6 +1462,8 @@ Platforms Styles
 
       @media @xs {
         width: 257px;
+        left: 50%;
+        margin-left: -152px;
       }
     }
 
@@ -1500,10 +1484,11 @@ Platforms Styles
       }
 
       @media @xs {
-        left: 161px;
+        left: 50%;
         right: auto;
         top: 22px;
         width: 144px;
+        margin-left: 9px;
       }
     }
 
@@ -1524,9 +1509,10 @@ Platforms Styles
       }
 
       @media @xs {
-        left: 67px;
+        left: 50%;
         top: 73px;
         width: 58px;
+        margin-left: -85px;
       }
     }
   }

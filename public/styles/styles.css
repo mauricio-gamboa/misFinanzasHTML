@@ -1198,26 +1198,6 @@ Platforms Styles
   -webkit-transform: translate3d(0px, 0px, 0px);
   transform: translate3d(0px, 0px, 0px);
 }
-.platforms-image > img.alo {
-  top: 0;
-  left: 0;
-}
-@media (min-width: 993px) and (max-width: 1200px), (min-width: 768px) and (max-width: 992px) {
-  .platforms-image > img.alo {
-    left: auto;
-    right: 0;
-  }
-}
-@media (min-width: 768px) and (max-width: 992px) {
-  .platforms-image > img.alo {
-    width: 515px;
-  }
-}
-@media (max-width: 767px) {
-  .platforms-image > img.alo {
-    width: 305px;
-  }
-}
 .platforms-image > img.laptop {
   transition-duration: 300ms;
   top: 0;
@@ -1238,6 +1218,8 @@ Platforms Styles
 @media (max-width: 767px) {
   .platforms-image > img.laptop {
     width: 257px;
+    left: 50%;
+    margin-left: -152px;
   }
 }
 .platforms-image > img.tablet {
@@ -1260,10 +1242,11 @@ Platforms Styles
 }
 @media (max-width: 767px) {
   .platforms-image > img.tablet {
-    left: 161px;
+    left: 50%;
     right: auto;
     top: 22px;
     width: 144px;
+    margin-left: 9px;
   }
 }
 .platforms-image > img.mobile {
@@ -1286,9 +1269,10 @@ Platforms Styles
 }
 @media (max-width: 767px) {
   .platforms-image > img.mobile {
-    left: 67px;
+    left: 50%;
     top: 73px;
     width: 58px;
+    margin-left: -85px;
   }
 }
 /***************************
