@@ -1144,38 +1144,35 @@ Platforms Styles
 }
 .platforms-image > img {
   position: absolute;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+}
+.platforms-image > img.ng-hide-remove {
+  opacity: 0;
+  transform: translate3d(-20px, 0px, 0px);
+}
+.platforms-image > img.ng-hide-add {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
 }
 .platforms-image > img.laptop {
-  transition: 0.33s linear left;
-  max-width: 100%;
+  transition-duration: 300ms;
   top: 0;
   left: 0;
-}
-.platforms-image > img.laptop.ng-hide-remove {
-  left: 1000px;
-}
-.platforms-image > img.laptop.ng-hide-add {
-  left: 0;
+  max-width: 100%;
 }
 .platforms-image > img.tablet {
-  transition: 0.66s linear right;
+  transition-duration: 600ms;
   right: 81px;
   top: 47px;
-}
-.platforms-image > img.tablet.ng-hide-remove {
-  right: 2000px;
-}
-.platforms-image > img.tablet.ng-hide-add {
-  right: 81px;
 }
 @media (min-width: 993px) and (max-width: 1200px) {
   .platforms-image > img.tablet {
     right: 0;
     top: 38px;
     width: 254px;
-  }
-  .platforms-image > img.tablet.ng-hide-add {
-    right: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -1184,9 +1181,6 @@ Platforms Styles
     top: 33px;
     width: 223px;
   }
-  .platforms-image > img.tablet.ng-hide-add {
-    right: 0;
-  }
 }
 @media (max-width: 767px) {
   .platforms-image > img.tablet {
@@ -1194,29 +1188,17 @@ Platforms Styles
     top: 7%;
     width: 48%;
   }
-  .platforms-image > img.tablet.ng-hide-add {
-    right: 0;
-  }
 }
 .platforms-image > img.mobile {
-  transition: 1s linear left;
+  transition-duration: 900ms;
   left: 146px;
   top: 158px;
-}
-.platforms-image > img.mobile.ng-hide-remove {
-  left: 1000px;
-}
-.platforms-image > img.mobile.ng-hide-add {
-  left: 146px;
 }
 @media (min-width: 993px) and (max-width: 1200px) {
   .platforms-image > img.mobile {
     left: 117px;
     top: 126px;
     width: 104px;
-  }
-  .platforms-image > img.mobile.ng-hide-add {
-    left: 117px;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -1225,18 +1207,12 @@ Platforms Styles
     top: 108px;
     width: 93px;
   }
-  .platforms-image > img.mobile.ng-hide-add {
-    left: 102px;
-  }
 }
 @media (max-width: 767px) {
   .platforms-image > img.mobile {
     left: 20%;
     top: 30%;
     width: 24%;
-  }
-  .platforms-image > img.mobile.ng-hide-add {
-    left: 20%;
   }
 }
 /***************************

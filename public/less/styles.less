@@ -1414,111 +1414,73 @@ Platforms Styles
 
   > img {
     position: absolute;
+    transition-property: opacity, transform;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.33, 0.98);
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+
+    &.ng-hide-remove {
+      opacity: 0;
+      transform: translate3d(-20px, 0px, 0px);
+    }
+
+    &.ng-hide-add {
+      opacity: 1;
+      transform: translate3d(0px, 0px, 0px);
+    }
 
     &.laptop {
-      transition: 0.33s linear left;
-      max-width: 100%;
+      transition-duration: 300ms;
       top: 0;
       left: 0;
-
-      &.ng-hide-remove {
-        left: 1000px;
-      }
-
-      &.ng-hide-add {
-        left: 0;
-      }
+      max-width: 100%;
     }
 
     &.tablet {
-      transition: 0.66s linear right;
+      transition-duration: 600ms;
       right: 81px;
       top: 47px;
-
-      &.ng-hide-remove {
-        right: 2000px;
-      }
-
-      &.ng-hide-add {
-        right: 81px;
-      }
 
       @media @medium {
         right: 0;
         top: 38px;
         width: 254px;
-
-        &.ng-hide-add {
-          right: 0;
-        }
       }
 
       @media @small {
         right: 0;
         top: 33px;
         width: 223px;
-
-        &.ng-hide-add {
-          right: 0;
-        }
       }
 
       @media @xs {
         right: 0;
         top: 7%;
         width: 48%;
-
-        &.ng-hide-add {
-          right: 0;
-        }
       }
     }
 
     &.mobile {
-      transition: 1s linear left;
+      transition-duration: 900ms;
       left: 146px;
       top: 158px;
-
-      &.ng-hide-remove {
-        left: 1000px;
-      }
-
-      &.ng-hide-add {
-        left: 146px;
-      }
 
       @media @medium {
         left: 117px;
         top: 126px;
         width: 104px;
-
-        &.ng-hide-add {
-          left: 117px;
-        }
       }
 
       @media @small {
         left: 102px;
         top: 108px;
         width: 93px;
-
-        &.ng-hide-add {
-          left: 102px;
-        }
       }
 
       @media @xs {
         left: 20%;
         top: 30%;
         width: 24%;
-
-        &.ng-hide-add {
-          left: 20%;
-        }
-      }
-
-      &.ng-show {
-
       }
     }
   }
