@@ -719,7 +719,7 @@ Home Header Styles
 }
 @media (max-width: 767px) {
   #home-header {
-    background: url("../images/bg-header-home.jpg") no-repeat 50% 0;
+    background: url("../images/bg-header-home.jpg") no-repeat 0 0;
   }
 }
 #home-header .home-header-bottom {
